@@ -1,0 +1,100 @@
+.login-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+/* Login Card Styling */
+.card {
+    border-radius: 1rem;
+    background-color: #ffffff;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+/* Logo image */
+.card img {
+    max-height: 100px;
+}
+
+/* Form labels */
+label {
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+}
+
+/* Input focus effect */
+.form-control:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Input group icon */
+.input-group-text {
+    background-color: #f8f9fa;
+    border-right: none;
+}
+
+/* Input field next to icon */
+.input-group .form-control {
+    border-left: none;
+}
+
+/* Form button */
+button[type="submit"] {
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0d6efd;
+    color: #fff;
+}
+
+/* Error message */
+.text-danger.small {
+    font-size: 0.85rem;
+}
+
+
+@media (max-width: 767px) {
+    .login-image {
+        display: none;
+    }
+}

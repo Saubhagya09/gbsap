@@ -1,0 +1,30 @@
+<div class="container">
+    <h2>Add New Project</h2>
+
+    <form (ngSubmit)="addNewPlan(newPlanForm.value)" #newPlanForm="ngForm">
+
+        <!-- Plan Name -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Project Name</mat-label>
+            <input matInput type="text" id="name" name="subscriptionName" ngModel required>
+        </mat-form-field>
+
+        <!-- Location Name -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Location</mat-label>
+            <input matInput type="text" id="location" name="location" ngModel required>
+        </mat-form-field>
+
+
+        <!-- TYpes Name -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Types Name</mat-label>
+            <input matInput type="text" id="tasktype" name="tasktype" ngModel required>
+        </mat-form-field>
+
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="newPlanForm.invalid">
+            Add Project
+        </button>
+    </form>
+</div>

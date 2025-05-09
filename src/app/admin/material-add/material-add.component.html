@@ -1,0 +1,51 @@
+<p>material-add works!</p>
+<div class="container">
+    <h2>Add Material Entry</h2>
+
+    <form (ngSubmit)="addMaterialEntry(materialForm.value)" #materialForm="ngForm">
+
+        <!-- Date -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="datePicker" ngModel name="date" required />
+            <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+            <mat-datepicker #datePicker></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Material Name -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Material Name</mat-label>
+            <input matInput type="text" id="materialName" name="materialName" ngModel required>
+        </mat-form-field>
+
+        <!-- Available Quantity -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Available Quantity</mat-label>
+            <input matInput type="number" id="availableQuantity" name="availableQuantity" ngModel required>
+        </mat-form-field>
+
+        <!-- Required Quantity -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Required Quantity</mat-label>
+            <input matInput type="number" id="requiredQuantity" name="requiredQuantity" ngModel required>
+        </mat-form-field>
+
+        <!-- Price -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Price</mat-label>
+            <input matInput type="number" id="price" name="price" ngModel required>
+        </mat-form-field>
+
+        <!-- Supplied Vendor -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Supplied Vendor</mat-label>
+            <input matInput type="text" id="suppliedVendor" name="suppliedVendor" ngModel required>
+        </mat-form-field>
+
+        <button class="btn btn-primary btn-lg btn-block my-3 py-3 font-weight-bold text-uppercase" type="submit"
+            [disabled]="materialForm.invalid">
+            Add Material Entry
+        </button>
+
+    </form>
+</div>

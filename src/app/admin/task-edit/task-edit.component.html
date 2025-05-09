@@ -1,0 +1,40 @@
+<div class="container mt-4" *ngIf="!loading; else loadingTpl">
+    <h3>Edit Task</h3>
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label>Task Name</label>
+            <input type="text" class="form-control" formControlName="taskName" />
+        </div>
+        <div class="mb-3">
+            <label>Status</label>
+            <select class="form-control" formControlName="status">
+                <option>Pending</option>
+                <option>In Progress</option>
+                <option>Completed</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label>Start Date</label>
+            <input type="date" class="form-control" formControlName="startDate" />
+        </div>
+        <div class="mb-3">
+            <label>Due Date</label>
+            <input type="date" class="form-control" formControlName="dueDate" />
+        </div>
+        <div class="mb-3">
+            <label>Task Type</label>
+            <input type="text" class="form-control" formControlName="taskType" />
+        </div>
+        <div class="mb-3">
+            <label>Assigned To</label>
+            <input type="text" class="form-control" formControlName="assignedTo" />
+        </div>
+        <button class="btn btn-primary" type="submit">Update Task</button>
+    </form>
+
+    <div *ngIf="error" class="text-danger mt-3">{{ error }}</div>
+</div>
+
+<ng-template #loadingTpl>
+    <p>Loading task data...</p>
+</ng-template>

@@ -1,0 +1,89 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">SL.</th>
+            <th scope="col">Task Name</th>
+            <th scope="col">status</th>
+            <th scope="col">taskType</th>
+
+            <th scope="col">assignedTo</th>
+
+            <th scope="col">startDate</th>
+            <th scope="col">dueDate</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let task of tasks; let i = index">
+        <tr>
+            <th scope="row">{{i+1}}</th>
+
+            <td>{{task.taskName}}</td>
+            <td>{{task.status}}</td>
+            <td>{{ task.taskType}}</td>
+            <td>{{ task.assignedTo}}</td>
+
+            <td>{{ task.startDate}}</td>
+            <td>{{ task.dueDate}}</td>
+            <td>
+                <button class="btn btn-success btn-sm" (click)="edit(task)">Edit</button>
+                <button class="btn btn-danger btn-sm">Show</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- task modal -->
+
+
+<div class="modal fade " id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content p-4 shadow-lg rounded-lg border-0"
+            style="max-width: 1100px; margin: auto; margin-top: 20px;">
+
+            <!-- Close Button in Top Right Corner -->
+            <div class="d-flex justify-content-end">
+                <!-- <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"
+                    style="background: transparent; border: none; font-size: 20px; outline: none;">
+                    <i class="fas fa-times"></i>
+                </button> -->
+                <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+
+
+            </div>
+
+            <div class="modal-body text-center">
+
+
+                <div class="d-flex justify-content-between container mb-3">
+                    <div
+                        style="margin-top: 40px;margin-left: -13rem;  background: linear-gradient(180deg, #fff, #e0eeff);margin-left: 20px;">
+
+                    </div>
+
+                    <div>
+                        <div class="right_side">
+                            <h2 class="sign_account">Sign In To Your Account</h2>
+
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

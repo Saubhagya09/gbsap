@@ -1,0 +1,41 @@
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Project Name</th>
+            <th>Location</th>
+            <th>Type Name</th>
+            <th>Action</th>
+            <th>Task</th>
+            <th>Progress</th>
+            <th>Material</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let project of projects; let i = index">
+            <td>{{i+1 }}</td>
+            <td>{{ project.projectName }}</td>
+            <td>{{ project.location }}</td>
+            <td>{{ project.typeName }}</td>
+            <td>
+                <button class="btn btn-danger btn-sm" (click)="deleteProject(project._id)">Delete</button>
+            </td>
+            <td>
+                <button class="btn btn-success btn-sm " (click)="task_view(project._id)">View</button>
+                <button class="btn btn-warning btn-sm" style="margin-left: 10px;"
+                    (click)="task_add(project._id)">Add</button>
+                <!-- <button class="btn btn-danger btn-sm">Show</button> -->
+            </td>
+            <td>
+                <!-- <button class="btn btn-success btn-sm">Add</button>
+                <button class="btn btn-warning btn-sm">Edit</button> -->
+                <button class="btn btn-info btn-sm">Action</button>
+            </td>
+            <td>
+                <!-- <button class="btn btn-success btn-sm">Action</button>
+                <button class="btn btn-warning btn-sm">Edit</button> -->
+                <button class="btn btn-success btn-sm">Show</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,15 @@
+.container {
+    max-width: 500px;
+    margin: 40px auto;
+}
+
+.full-width {
+    width: 100%;
+}
+
+button:disabled {
+    opacity: 0.65;
+    /* Make it more transparent */
+    cursor: not-allowed;
+    /* Change cursor to indicate it's disabled */
+}

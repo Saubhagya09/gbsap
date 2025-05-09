@@ -1,0 +1,67 @@
+<div class="container-fluid vh-100 d-flex align-items-center justify-content-center bg-light">
+  <div class="row w-100 shadow rounded overflow-hidden" style="max-width: 900px; background-color: white;">
+
+    <!-- Left Image Section -->
+    <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center  p-4">
+      <img src="/img/side_logo.jpg" class="img-fluid rounded" style="max-height: 100%;" alt="Login Visual">
+    </div>
+
+    <!-- Right Login Form -->
+    <div class="col-md-6 d-flex align-items-center justify-content-center p-4">
+      <div class="w-100" style="max-width: 350px;">
+
+        <!-- Logo and Heading -->
+        <div class="text-center mb-4">
+          <img src="/img/head_logo.jpg" alt="Logo" style="height: 100px;">
+          <h4 class="mt-3 text-primary">Let's Work <strong>GBSAP</strong></h4>
+        </div>
+
+        <!-- Login Form -->
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+          <!-- Mobile Number -->
+          <div class="mb-3">
+            <label for="mobile" class="form-label">Mobile Number</label>
+            <div class="input-group">
+              <span class="input-group-text bg-light"><i class="bi bi-telephone text-primary"></i></span>
+              <input type="text" id="mobile" formControlName="mobile" maxlength="10" class="form-control"
+                placeholder="Enter your mobile number" />
+            </div>
+            <div class="text-danger small mt-1"
+              *ngIf="loginForm.get('mobile')?.invalid && loginForm.get('mobile')?.touched">
+              Mobile number must be 10 digits.
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="mb-3">
+            <label for="code" class="form-label">Password</label>
+            <div class="input-group">
+              <span class="input-group-text bg-light"><i class="bi bi-lock-fill text-primary"></i></span>
+              <input type="password" id="code" formControlName="code" maxlength="6" class="form-control"
+                placeholder="Enter 6-digit code" />
+            </div>
+            <div class="text-danger small mt-1"
+              *ngIf="loginForm.get('code')?.invalid && loginForm.get('code')?.touched">
+              Code must be exactly 6 digits.
+            </div>
+          </div>
+
+          <!-- Error Message -->
+          <div class="text-danger mb-2" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+          <!-- Login Button -->
+          <button type="submit" class="btn btn-primary w-100 mb-2" [disabled]="loginForm.invalid">
+            Login
+          </button>
+
+          <!-- Optional - Create Account or Forgot Password -->
+          <!-- <div class="text-center mt-3">
+            <a href="#" class="text-decoration-none small text-muted">Forgot password?</a>
+          </div> -->
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

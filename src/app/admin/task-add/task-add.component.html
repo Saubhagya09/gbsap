@@ -1,0 +1,57 @@
+<mat-card class="mt-4 p-4" style="width: 30rem; margin-left: 160px;">
+    <form [formGroup]="taskForm" (ngSubmit)="addNewPlan()">
+        <div class="d-flex flex-column gap-3">
+
+            <!-- Task Name -->
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Task Name</mat-label>
+                <input matInput formControlName="taskname" required />
+            </mat-form-field>
+
+            <!-- Status -->
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="status" required>
+                    <mat-option value="To Do">To Do</mat-option>
+                    <mat-option value="In Progress">In Progress</mat-option>
+                    <mat-option value="Completed">Completed</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!-- Task Type -->
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Task Type</mat-label>
+                <input matInput formControlName="tasktype" required />
+            </mat-form-field>
+
+            <!-- Assign To -->
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Assign To</mat-label>
+                <input matInput formControlName="assignto" required />
+            </mat-form-field>
+
+            <!-- Start Date -->
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Start Date</mat-label>
+                <input matInput [matDatepicker]="startPicker" formControlName="startdate" required />
+                <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                <mat-datepicker #startPicker></mat-datepicker>
+            </mat-form-field>
+
+            <!-- Due Date -->
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Due Date</mat-label>
+                <input matInput [matDatepicker]="duePicker" formControlName="dueDate" required />
+                <mat-datepicker-toggle matSuffix [for]="duePicker"></mat-datepicker-toggle>
+                <mat-datepicker #duePicker></mat-datepicker>
+            </mat-form-field>
+
+            <!-- Submit Button -->
+            <div class="text-end ">
+                <button mat-raised-button color="accent" type="submit" [disabled]="taskForm.invalid">
+                    Add Task
+                </button>
+            </div>
+        </div>
+    </form>
+</mat-card>
