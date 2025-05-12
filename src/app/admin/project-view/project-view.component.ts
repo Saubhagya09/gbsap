@@ -133,7 +133,34 @@ export class ProjectViewComponent {
   }
 
   materail_view(id: any) {
+    const url = `https://backend-sm8m.onrender.com/materials/project/${id}`;
+    this.service.get(url).subscribe({
+      next: (response: any) => {
+        console.log(response);
 
+        this.router.navigate(['/admin/material/view'], { queryParams: { id: id } });
+
+
+
+      },
+
+
+      error: (err) => {
+        console.log(err);
+
+        this.error = 'Failed to load tasks. Please try again later.';
+        console.error('API error:', err);
+        this.loading = false;
+        if (err.status === 404 && err.error?.error === "No materials found for this project") {
+          const confirmAdd = confirm('No materaial found. Do you want to add a material?');
+          if (confirmAdd) {
+            this.router.navigate(['/admin/material/add'], { queryParams: { id: id } });
+          } else {
+            this.error = 'Failed to load materail. Please try again later.';
+          }
+        }
+      }
+    });
   }
 
   // this.router.navigate(['/admin/task/view'], { queryParams: { id: project._id } });

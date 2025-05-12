@@ -71,6 +71,10 @@ const routes: Routes = [
             },
 
 
+            {
+                path: 'material/edit',
+                loadComponent: () => import('./material-edit/material-edit.component').then(m => m.MaterialEditComponent)
+            },
 
 
         ]

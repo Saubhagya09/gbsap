@@ -1,23 +1,32 @@
+import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatOptionModule } from '@angular/material/core';
-import { MatCardModule } from '@angular/material/card';
-import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ServiceService } from '../../service.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-project-add',
+
   imports: [FormsModule, MatInputModule, MatFormFieldModule, MatButtonModule,
     MatDatepickerModule, MatNativeDateModule,
     MatOptionModule, MatCardModule, FormsModule, ReactiveFormsModule, HttpClientModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    HttpClientModule
+  ],
   templateUrl: './project-add.component.html',
   styleUrl: './project-add.component.scss'
 })
 export class ProjectAddComponent {
+
 addNewPlan(arg0: any) {
 throw new Error('Method not implemented.');
 }
@@ -41,62 +50,33 @@ throw new Error('Method not implemented.');
       this.projectId = params.get("id")
       console.log(this.projectId)
 
-
-    })
-  }
-
-  formatDateToLocalString(date: Date): string {
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  }
-  addNewProgress() {
-    console.log('Submitted Plan:', FormData);
-    // handle logic (e.g., send to service or API)
+  newProject: any = {}; // Property to bind to the form
+  constructor(private http: HttpClient, private projectService: ServiceService, private router: Router,) { }
 
 
-    if (this.taskForm.valid) {
-      const formData = this.taskForm.value;
-      console.log(formData);
+  // Method to handle form submission and make the API request
+  addNewPlan(formData: any): void {
+    const apiUrl = 'https://backend-sm8m.onrender.com/projects'; // Your API URL
 
-      // Format the payload to match backend expectations
-      const taskPayload = {
-        // projectId: this.projectId,
-        // type: formData.type.trim(),
-        // start: this.formatDateToLocalString(formData.start),
+    const payload = {
+      projectName: formData.subscriptionName,
+      location: formData.location,
+      typeName: formData.tasktype
+    };
 
-        // percentage: formData.percentage.trim(),
-        // payment: formData.payment.trim(),
+    // HTTP POST request using HttpClient (with fetch enabled)
+    this.http.post(apiUrl, payload).subscribe({
+      next: (response: any) => {
 
-        // expectedDate: this.formatDateToLocalString(formData.expectedDate),
-        // vendor: formData.vendor.trim(),
-        // remarks: formData.remarks.trim(),
-        projectId: this.projectId,
-        type: formData.type?.trim() || '',
-        starts: this.formatDateToLocalString(formData.start),
-        percentage: formData.percentage?.trim(),
-        payment: formData.payment?.trim(),
-        expectedDate: this.formatDateToLocalString(formData.expectedDate),
-        vendor: formData.vendor?.trim() || '',
-        remarks: formData.remark?.trim() || '',
-      };
 
-      this.http.post('https://backend-sm8m.onrender.com/progress', taskPayload).subscribe({
-        next: (response: any) => {
-          console.log('Task created successfully:', response);
-          // Optionally redirect or reset form
-          this.taskForm.reset();
 
-          this.router.navigate(['/admin/progress/view'], { queryParams: { id: this.projectId } }); // Adjust the route as needed
-        },
-        error: (error: any) => {
-          console.error('Error creating task:', error);
-          // Optionally show error message to user
-        }
-      });
-    } else {
-      console.warn('Form is invalid or projectId is missing');
-    }
+        alert('✅ Project created successfully!');
+        this.router.navigate(["/admin/project/view"])
+      },
+      error: (error: any) => {
+        console.error('Error creating project:', error);
+        alert('❌ Failed to create project.');
+      }
+    });
   }
 }
