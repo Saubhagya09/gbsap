@@ -20,49 +20,53 @@ export class TaskEditComponent {
       this.projectId = params.get("projectId")
       console.log(this.projectId)
       if (this.projectId) {
-        // this.fetchTaskById(this.projectId);
+        this.fetchTaskById(this.projectId);
       } else {
-        console.error('No product ID found in the URL!');
+        this.error = "No task ID provided.";
       }
 
     })
-    const task = this.service.getSelectedTask();
-    if (task) {
-      this.taskForm.patchValue({
-        taskName: task.taskName,
-        status: task.status,
-        startDate: task.startDate.split('T')[0],
-        dueDate: task.dueDate.split('T')[0],
-        taskType: task.taskType,
-        assignedTo: task.assignedTo,
-      });
-    } else {
-      this.error = 'No task data found. Please go back and select a task again.';
-    }
+
+    this.taskForm = this.fb.group({
+      taskName: ['', Validators.required],
+      status: ['', Validators.required],
+      startDate: ['', Validators.required],
+      dueDate: ['', Validators.required],
+      taskType: ['', Validators.required],
+      assignedTo: ['', Validators.required],
+    });
+
+
+
+
   }
 
 
-  // fetchTaskById(id: string) {
-  //   const url = `https://backend-sm8m.onrender.com/tasks/${id}`;
-  //   this.service.get(url).subscribe({
-  //     next: (data: any) => {
-  //       this.taskForm.patchValue({
-  //         taskName: data.taskName,
-  //         status: data.status,
-  //         startDate: data.startDate.split('T')[0],
-  //         dueDate: data.dueDate.split('T')[0],
-  //         taskType: data.taskType,
-  //         assignedTo: data.assignedTo,
-  //       });
-  //       this.loading = false;
-  //     },
-  //     error: (err) => {
-  //       this.error = 'Failed to fetch task.';
-  //       console.error(err);
-  //       this.loading = false;
-  //     }
-  //   });
-  // }
+  fetchTaskById(id: String): void {
+    console.log(id);
+
+    const url = `https://backend-sm8m.onrender.com/tasks/${id}`;
+    this.service.get(url).subscribe({
+      next: (data: any) => {
+        console.log(data);
+
+        this.taskForm.patchValue({
+          taskName: data.taskName,
+          status: data.status,
+          startDate: data.startDate.split('T')[0],
+          dueDate: data.dueDate.split('T')[0],
+          taskType: data.taskType,
+          assignedTo: data.assignedTo,
+        });
+        this.loading = false;
+      },
+      error: (err) => {
+        this.error = 'Failed to fetch task.';
+        console.error(err);
+        this.loading = false;
+      }
+    });
+  }
 
   onSubmit() {
     if (!this.projectId || this.taskForm.invalid) return;

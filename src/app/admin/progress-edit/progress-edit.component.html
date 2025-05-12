@@ -1,0 +1,38 @@
+<div class="container mt-4">
+    <h3>Edit Progress</h3>
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label>Vendor</label>
+            <input type="text" class="form-control" formControlName="vendor" />
+        </div>
+
+        <div class="mb-3">
+            <label>Activity</label>
+            <input type="text" class="form-control" formControlName="type" />
+        </div>
+
+        <div class="mb-3">
+            <label>Payment</label>
+            <input type="text" class="form-control" formControlName="payment" />
+        </div>
+        <div class="mb-3">
+            <label>percentage</label>
+            <input type="text" class="form-control" formControlName="percentage" />
+        </div>
+        <div class="mb-3">
+            <label>starts</label>
+            <input type="date" class="form-control" formControlName="starts" />
+        </div>
+        <div class="mb-3">
+            <label>expectedDate</label>
+            <input type="date" class="form-control" formControlName="expectedDate" />
+        </div>
+        <div class="mb-3">
+            <label>remarks</label>
+            <input type="text" class="form-control" formControlName="remarks" />
+        </div>
+        <button class="btn btn-primary" type="submit">Update Task</button>
+    </form>
+
+    <div *ngIf="error" class="text-danger mt-3">{{ error }}</div>
+</div>
