@@ -1,56 +1,60 @@
-<div class="container">
-    <h2>Add New Project</h2>
+<mat-card class="mt-4 p-4" style="width: 30rem; margin-left: 160px;">
+    <form [formGroup]="taskForm" (ngSubmit)=" addNewProgress()">
+        <div class="d-flex flex-column gap-3">
 
-    <form (ngSubmit)="addNewPlan(newPlanForm.value)" #newPlanForm="ngForm">
+            <!-- Task Name -->
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Activity</mat-label>
+                <input matInput formControlName="type" required />
+            </mat-form-field>
 
-        <!-- Type -->
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Type</mat-label>
-            <input matInput type="text" id="type" name="type" ngModel required>
-        </mat-form-field>
+            <!-- percentage -->
 
-        <!-- Status -->
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Status</mat-label>
-            <input matInput type="text" id="status" name="status" ngModel required>
-        </mat-form-field>
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>percentage</mat-label>
+                <input matInput formControlName="percentage" required />
+            </mat-form-field>
 
-        <!-- Percentage -->
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Percentage</mat-label>
-            <input matInput type="number" id="percentage" name="percentage" ngModel required>
-        </mat-form-field>
 
-        <!-- Remarks -->
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Remarks</mat-label>
-            <input matInput type="text" id="remarks" name="remarks" ngModel required>
-        </mat-form-field>
+            <!-- Task Type -->
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>payment</mat-label>
+                <input matInput formControlName="payment" required />
+            </mat-form-field>
 
-        <!-- Payment -->
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Payment</mat-label>
-            <input matInput type="number" id="payment" name="payment" ngModel required>
-        </mat-form-field>
+            <!-- vender -->
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Vendor</mat-label>
+                <input matInput formControlName="vendor" required />
+            </mat-form-field>
 
-        <!-- Expected Date -->
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Expected Date</mat-label>
-            <input matInput [matDatepicker]="expectedDatePicker" ngModel name="expectedDate" required />
-            <mat-datepicker-toggle matSuffix [for]="expectedDatePicker"></mat-datepicker-toggle>
-            <mat-datepicker #expectedDatePicker></mat-datepicker>
-        </mat-form-field>
+            <!-- Start Date -->
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Start Date</mat-label>
+                <input matInput [matDatepicker]="startPicker" formControlName="start" required />
+                <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+                <mat-datepicker #startPicker></mat-datepicker>
+            </mat-form-field>
 
-        <!-- Vendor -->
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Vendor</mat-label>
-            <input matInput type="text" id="vendor" name="vendor" ngModel required>
-        </mat-form-field>
-
-        <button class="btn btn-success btn-lg btn-block my-3 py-3 font-weight-bold text-uppercase" type="submit"
-            [disabled]="newPlanForm.invalid">
-            Add Project
-        </button>
-
+            <!-- Due Date -->
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Expected Date</mat-label>
+                <input matInput [matDatepicker]="duePicker" formControlName="expectedDate" required />
+                <mat-datepicker-toggle matSuffix [for]="duePicker"></mat-datepicker-toggle>
+                <mat-datepicker #duePicker></mat-datepicker>
+            </mat-form-field>
+            <!-- remark -->
+            <!-- Remark -->
+            <label class="font-medium text-gray-700 self-start mt-2">Remark</label>
+            <mat-form-field appearance="outline" class="w-full">
+                <textarea matInput formControlName="remark" rows="3" required></textarea>
+            </mat-form-field>
+            <!-- Submit Button -->
+            <div class="text-end ">
+                <button mat-raised-button color="accent" type="submit">
+                    Add Progress
+                </button>
+            </div>
+        </div>
     </form>
-</div>
+</mat-card>

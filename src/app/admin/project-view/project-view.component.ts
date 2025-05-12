@@ -29,6 +29,7 @@ export class ProjectViewComponent {
     this.http.get<any[]>('https://backend-sm8m.onrender.com/projects')
       .subscribe({
         next: (data) => {
+
           this.projects = data.sort((a, b) =>
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
           );
@@ -78,10 +79,7 @@ export class ProjectViewComponent {
 
         this.router.navigate(['/admin/task/view'], { queryParams: { id: id } });
 
-        // this.tasks = response;
-        // this.loading = false;
-        // console.log(this.tasks)
-        // }
+
 
       },
 
@@ -102,6 +100,42 @@ export class ProjectViewComponent {
     });
   }
 
+
+  progress_view(id: any) {
+    const url = `https://backend-sm8m.onrender.com/progress/project/${id}`;
+    this.service.get(url).subscribe({
+      next: (response: any) => {
+        console.log(response);
+
+        this.router.navigate(['/admin/progress/view'], { queryParams: { id: id } });
+
+
+
+      },
+
+
+      error: (err) => {
+        console.log(err);
+
+        this.error = 'Failed to load tasks. Please try again later.';
+        console.error('API error:', err);
+        this.loading = false;
+        if (err.status === 404 && err.error?.error === "No progress found for this project") {
+          const confirmAdd = confirm('No progress found. Do you want to add a progress?');
+          if (confirmAdd) {
+            this.router.navigate(['/admin/progress/add'], { queryParams: { id: id } });
+          } else {
+            this.error = 'Failed to load progress. Please try again later.';
+          }
+        }
+      }
+    });
+  }
+
+  materail_view(id: any) {
+
+  }
+
   // this.router.navigate(['/admin/task/view'], { queryParams: { id: project._id } });
 
   task_add(id: any) {
@@ -109,6 +143,18 @@ export class ProjectViewComponent {
     this.router.navigate(['/admin/task/add'], { queryParams: { id: id } });
 
   }
+  progress_add(id: any) {
+    console.log(id);
+    this.router.navigate(['/admin/progress/add'], { queryParams: { id: id } });
+
+  }
+  material_add(id: any) {
+    console.log(id);
+    this.router.navigate(['/admin/material/add'], { queryParams: { id: id } });
+
+  }
+
+
 }
 
 

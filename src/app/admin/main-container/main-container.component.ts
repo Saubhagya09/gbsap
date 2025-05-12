@@ -80,56 +80,56 @@ const navitems: NavItem[] = [
   //   }
   // ]
   // },
-  {
-    parent: true,
-    displayName: 'Progress',
-    iconName: 'folder_open',
-    show: 'N/A',
-    type: true,
-    children: [
-      {
-        parent: false,
-        displayName: 'View',
-        iconName: 'visibility',
-        route: 'progress/view',
-        show: 'N/A',
-        type: true
-      },
-      {
-        parent: false,
-        displayName: 'Add',
-        iconName: 'add_circle',
-        route: 'progress/add',
-        show: 'N/A',
-        type: true
-      }
-    ]
-  },
-  {
-    parent: true,
-    displayName: 'Material',
-    iconName: 'folder_open',
-    show: 'N/A',
-    type: true,
-    children: [
-      {
-        parent: false,
-        displayName: 'View',
-        iconName: 'visibility',
-        route: 'material/view',
-        show: 'N/A',
-        type: true
-      },
-      {
-        parent: false,
-        displayName: 'Add',
-        iconName: 'add_circle',
-        route: 'material/add',
-        show: 'N/A',
-        type: true
-      }
-    ]
-  }
+  // {
+  //   parent: true,
+  //   displayName: 'Progress',
+  //   iconName: 'folder_open',
+  //   show: 'N/A',
+  //   type: true,
+  //   children: [
+  //     {
+  //       parent: false,
+  //       displayName: 'View',
+  //       iconName: 'visibility',
+  //       route: 'progress/view',
+  //       show: 'N/A',
+  //       type: true
+  //     },
+  //     {
+  //       parent: false,
+  //       displayName: 'Add',
+  //       iconName: 'add_circle',
+  //       route: 'progress/add',
+  //       show: 'N/A',
+  //       type: true
+  //     }
+  //   ]
+  // },
+  // {
+  //   parent: true,
+  //   displayName: 'Material',
+  //   iconName: 'folder_open',
+  //   show: 'N/A',
+  //   type: true,
+  //   children: [
+  //     {
+  //       parent: false,
+  //       displayName: 'View',
+  //       iconName: 'visibility',
+  //       route: 'material/view',
+  //       show: 'N/A',
+  //       type: true
+  //     },
+  //     {
+  //       parent: false,
+  //       displayName: 'Add',
+  //       iconName: 'add_circle',
+  //       route: 'material/add',
+  //       show: 'N/A',
+  //       type: true
+  //     }
+  //   ]
+  // }
 ];
 
 @Component({
