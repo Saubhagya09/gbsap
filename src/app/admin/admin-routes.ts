@@ -18,7 +18,7 @@ const routes: Routes = [
             },
             {
                 path: 'project/add',
-                loadComponent: () => import("./progress-add/progress-add.component").then(m => m.ProgressAddComponent)
+                loadComponent: () => import("./project-add/project-add.component").then(m => m.ProjectAddComponent)
             },
             {
                 path: 'task/view',
@@ -51,6 +51,10 @@ const routes: Routes = [
             {
                 path: 'material/add',
                 loadComponent: () => import('./material-add/material-add.component').then(m => m.MaterialAddComponent)
+            },
+            {
+                path: 'material/edit',
+                loadComponent: () => import('./material-edit/material-edit.component').then(m => m.MaterialEditComponent)
             },
 
 

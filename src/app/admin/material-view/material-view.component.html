@@ -1,83 +1,35 @@
-<p>material-view works!</p>
-<!-- <h2>Weekly Task List</h2>
-
-<table>
+<table class="table table-bordered">
   <thead>
     <tr>
-      <th>TASK NAME</th>
-      <th>STATUS</th>
-      <th>DUE DATE</th>
-      <th>TASK TYPE</th>
-      <th>ASSIGNED TO</th>
-      <th>HOURS BUDGETED</th>
-      <th>ACTUAL HOURS</th>
+      <th scope="col">SL.</th>
+      <th scope="col">SuppliedVendor</th>
+      <th scope="col">materialName</th>
+      <th scope="col">availableQuantity</th>
+
+      <th scope="col">issuedQuantity</th>
+
+      <th scope="col">requiredQuantity</th>
+      <th scope="col">price</th>
+
+
     </tr>
   </thead>
-  <tbody *ngFor="let day of tasksByDay">
-    <tr class="day-row">
-      <td colspan="7">{{ day.day }}</td>
-    </tr>
-    <tr *ngFor="let task of day.tasks">
-      <td>{{ task.name }}</td>
-      <td [ngClass]="statusClass(task.status)">
-        <span class="icon">{{ statusIcon(task.status) }}</span>
-        {{ task.status }}
+  <tbody *ngFor="let task of tasks; let i = index">
+    <tr>
+      <th scope="row">{{i+1}}</th>
+
+      <td>{{task.suppliedVendor}}</td>
+      <td>{{task.materialName}}</td>
+      <td>{{ task.availableQuantity}}</td>
+      <td>{{ task.issuedQuantity}}</td>
+
+      <td>{{ task.requiredQuantity}}</td>
+      <td>{{ task.price}}</td>
+
+      <td>
+        <button class="btn btn-success btn-sm" (click)="edit(task)">Edit</button>
+        <!-- <button class="btn btn-danger btn-sm">Show</button> -->
       </td>
-      <td>{{ task.due }}</td>
-      <td>{{ task.type }}</td>
-      <td>{{ task.assigned }}</td>
-      <td>{{ task.budgeted }}</td>
-      <td>{{ task.actual }}</td>
     </tr>
   </tbody>
-</table>
-
-
- -->
-
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th scope="col">id</th>
-            <th scope="col">project name</th>
-            <th scope="col">location</th>
-            <th scope="col">type</th>
-            <th scope="col">
-                Action
-                <!-- <button class="btn btn-primary btn-sm float-end" (click)="onCreate()">Show</button> -->
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>mdo</td>
-            <td>
-                <button class="btn btn-success btn-sm">Edit</button>
-                <button class="btn btn-danger btn-sm">Show</button>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>fat</td>
-            <td>
-                <button class="btn btn-success btn-sm">Edit</button>
-                <button class="btn btn-danger btn-sm">Show</button>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>John</td>
-            <td>Doe</td>
-            <td>social</td>
-            <td>
-                <button class="btn btn-success btn-sm">Edit</button>
-                <button class="btn btn-danger btn-sm">Show</button>
-            </td>
-        </tr>
-    </tbody>
 </table>
