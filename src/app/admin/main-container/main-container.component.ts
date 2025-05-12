@@ -55,6 +55,58 @@ const navitems: NavItem[] = [
       }
     ]
   },
+
+   {
+    parent: true,
+    displayName: 'Inventory List',
+    iconName: 'account_balance',
+    show: 'N/A',
+    type: true,
+    children: [
+      {
+        parent: false,
+        displayName: 'View',
+        iconName: 'visibility',
+        route: 'inventory/view',
+        show: 'N/A',
+        type: true
+      },
+      {
+        parent: false,
+        displayName: 'Add',
+        iconName: 'add_circle',
+        route: 'inventory/add',
+        show: 'N/A',
+        type: true
+      }
+    ]
+  },
+
+   {
+    parent: true,
+    displayName: 'Vendor',
+    iconName: 'dns',
+    show: 'N/A',
+    type: true,
+    children: [
+      {
+        parent: false,
+        displayName: 'View',
+        iconName: 'visibility',
+        route: 'vendor/view',
+        show: 'N/A',
+        type: true
+      },
+      {
+        parent: false,
+        displayName: 'Add',
+        iconName: 'add_circle',
+        route: 'vendor/add',
+        show: 'N/A',
+        type: true
+      }
+    ]
+  },
   // {
   //   parent: true,
   //   displayName: 'Taskmanager',

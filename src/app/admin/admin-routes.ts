@@ -18,7 +18,7 @@ const routes: Routes = [
             },
             {
                 path: 'project/add',
-                loadComponent: () => import("./progress-add/progress-add.component").then(m => m.ProgressAddComponent)
+                loadComponent: () => import("./project-add/project-add.component").then(m => m.ProjectAddComponent)
             },
             {
                 path: 'task/view',
@@ -52,6 +52,25 @@ const routes: Routes = [
                 path: 'material/add',
                 loadComponent: () => import('./material-add/material-add.component').then(m => m.MaterialAddComponent)
             },
+              {
+                path: 'inventory/view',
+                loadComponent: () => import('./inventory-view/inventory-view.component').then(m => m.InventoryViewComponent)
+            },
+            {
+                path: 'inventory/add',
+                loadComponent: () => import('./inventory-add/inventory-add.component').then(m => m.InventoryAddComponent)
+            },
+
+              {
+                path: 'vendor/view',
+                loadComponent: () => import('./vendor-list-view/vendor-list-view.component').then(m => m.VendorListViewComponent)
+            },
+            {
+                path: 'vendor/add',
+                loadComponent: () => import('./vender-list-add/vender-list-add.component').then(m => m.VenderListAddComponent)
+            },
+
+
 
 
         ]

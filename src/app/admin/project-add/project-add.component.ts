@@ -10,14 +10,17 @@ import { MatCardModule } from '@angular/material/card';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 @Component({
-  selector: 'app-progress-add',
+  selector: 'app-project-add',
   imports: [FormsModule, MatInputModule, MatFormFieldModule, MatButtonModule,
     MatDatepickerModule, MatNativeDateModule,
     MatOptionModule, MatCardModule, FormsModule, ReactiveFormsModule, HttpClientModule],
-  templateUrl: './progress-add.component.html',
-  styleUrl: './progress-add.component.scss'
+  templateUrl: './project-add.component.html',
+  styleUrl: './project-add.component.scss'
 })
-export class ProgressAddComponent {
+export class ProjectAddComponent {
+addNewPlan(arg0: any) {
+throw new Error('Method not implemented.');
+}
   taskForm: FormGroup;
   projectId: string | null = null;
 
