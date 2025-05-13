@@ -1,0 +1,27 @@
+<div class="container" *ngIf="!loading && !error">
+    <h2>Edit Project</h2>
+
+    <form [formGroup]="projectForm" (ngSubmit)="updateProject()">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Project Name</mat-label>
+            <input matInput type="text" formControlName="projectName" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Location</mat-label>
+            <input matInput type="text" formControlName="location" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Type Name</mat-label>
+            <input matInput type="text" formControlName="typeName" />
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="projectForm.invalid">
+            Update Project
+        </button>
+    </form>
+</div>
+
+<div *ngIf="loading">Loading project...</div>
+<div *ngIf="error" class="alert alert-danger">{{ error }}</div>

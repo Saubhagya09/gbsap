@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServiceService } from '../../service.service';
 import { CommonModule } from '@angular/common';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-progress-edit',
   imports: [ReactiveFormsModule, CommonModule],
@@ -11,92 +12,108 @@ import { CommonModule } from '@angular/common';
   styleUrl: './progress-edit.component.scss'
 })
 export class ProgressEditComponent {
-  progressId: string | null = null;
   taskForm!: FormGroup;
-  loading = true;
+
+  progressId: string | null = null;
   error: string | null = null;
-  constructor(private router: Router, private route: ActivatedRoute, private fb: FormBuilder, private service: ServiceService) { }
-  ngOnInit(): void {
-    this.route.queryParamMap.subscribe(params => {
-      this.progressId = params.get("progressId")
-      console.log(this.progressId)
-      if (this.progressId) {
-        // this.fetchTaskById(this.progressId);
-        this.fetchProgressById(this.progressId)
-      } else {
-        this.error = "No task ID provided.";
-      }
 
-    })
-
+  constructor(private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private service: ServiceService) {
     this.taskForm = this.fb.group({
       vendor: ['', Validators.required],
-      starts: ['', Validators.required],
       type: ['', Validators.required],
       payment: ['', Validators.required],
       percentage: ['', Validators.required],
+      starts: ['', Validators.required],
       expectedDate: ['', Validators.required],
-      remarks: ['', Validators.required],
+      remarks: ['']
     });
+  }
 
 
+  ngOnInit(): void {
+    // Initialize the form
+    this.route.queryParamMap.subscribe(params => {
+      this.progressId = params.get('progress.id');
+      console.log(this.progressId);
 
+      if (this.progressId) {
+        this.fetchProgress(this.progressId);
+      } else {
+        this.error = 'Invalid progress ID.';
+      }
+    });
 
   }
 
-  fetchProgressById(id: String): void {
-    console.log(id);
 
+  fetchProgress(id: string): void {
     const url = `https://backend-sm8m.onrender.com/progress/${id}`;
     this.service.get(url).subscribe({
-      next: (data: any) => {
-        console.log(data);
+      next: (response: any) => {
+        console.log(response);
+
+        const task = response;
+        console.log(task);
 
         this.taskForm.patchValue({
-          vendor: data.vendor,
-          starts: data.starts.split('T')[0],
-          type: data.type,
-          payment: data.payment,
-          percentage: data.percentage,
-          expectedDate: data.expectedDate.split('T')[0],
-          remarks: data.remarks
+          vendor: task.vendor,
+          type: task.type,
+          payment: task.payment,
+          percentage: task.percentage,
+          starts: task.starts?.substring(0, 10), // trim date if needed
+          expectedDate: task.expectedDate?.substring(0, 10),
+          remarks: task.remarks,
+          projectId: task.projectId
         });
-        this.loading = false;
+
+
       },
-      error: (err) => {
-        this.error = 'Failed to fetch task.';
+      error: err => {
         console.error(err);
-        this.loading = false;
+        this.error = 'Failed to load progress data.';
       }
     });
   }
-
-
   onSubmit() {
-    if (!this.progressId || this.taskForm.invalid) {
-      console.warn('Form invalid or missing ID');
+    if (this.taskForm.invalid || !this.progressId) {
       return;
-    };
-    console.log(this.taskForm.value);
+    }
+
+    const url = `https://backend-sm8m.onrender.com/progress/${this.progressId}`;
+    const updatedData = this.taskForm.value;
+    console.log(updatedData);
+    const requstbody = {
+      "vendor": updatedData.vendor,
+      "type": updatedData.type,
+      "payment": updatedData.payment,
+      "percentage": updatedData.percentage,
+      "starts": updatedData.starts,
+      "expectedDate": updatedData.expectedDate,
+      "remarks": updatedData.remarks,
+      "projectId": updatedData.projectId
 
 
-    const updateUrl = ` https://backend-sm8m.onrender.com/progress/${this.progressId}`;
-    this.service.put(updateUrl, this.taskForm.value).subscribe({
+
+    }
+
+    this.service.put(url, requstbody).subscribe({
       next: (res) => {
         console.log(res);
 
-        alert('Task updated successfully!');
-        this.router.navigate(['/admin/progress/view'], {
-          queryParams: { id: res.projectId }
-        });
+        alert('Progress updated successfully!');
+        this.router.navigate(['/admin/progress/view']);
       },
       error: (err) => {
-        this.error = 'Failed to update task.';
         console.error(err);
+        this.error = 'Failed to update progress. Please try again.';
       }
     });
   }
 }
+
 
 // pipe is special type of service .which take input value and return
 //  update value of that input value 

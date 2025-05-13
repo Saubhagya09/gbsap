@@ -68,6 +68,11 @@ export class ProjectViewComponent {
       });
   }
 
+  updateProject(projectId: string) {
+    console.log(projectId);
+    this.router.navigate(['/admin/project/edit'], { queryParams: { id: projectId } });
+  }
+
 
   // View tasks associated with a project
   task_view(id: any) {

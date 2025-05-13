@@ -11,7 +11,7 @@
             <th scope="col">starts</th>
             <th scope="col">expectedDate</th>
             <th scope="col">remarks</th>
-            <th scope="col">Action</th>
+            <!-- <th scope="col">Action</th> -->
         </tr>
     </thead>
     <tbody *ngFor="let progress of tasks; let i = index">
@@ -26,10 +26,10 @@
             <td>{{ progress.starts}}</td>
             <td>{{ progress.expectedDate}}</td>
             <td>{{progress.remarks}}</td>
-            <td>
-                <!-- <button class="btn btn-danger btn-sm ">Delete</button> -->
-                <button class="btn btn-info btn-sm" (click)="edit(progress)">Edit</button>
-            </td>
+            <!-- <td> -->
+            <!-- <button class="btn btn-danger btn-sm ">Delete</button> -->
+            <!-- <button class="btn btn-info btn-sm" (click)="edit(progress)">Edit</button> -->
+            <!-- </td> -->
         </tr>
     </tbody>
 </table>
