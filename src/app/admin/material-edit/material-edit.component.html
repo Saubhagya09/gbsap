@@ -1,0 +1,42 @@
+<div class="container mt-4">
+    <h3>Edit Material</h3>
+
+    <form [formGroup]="materialForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="suppliedVendor" class="form-label">Supplied Vendor</label>
+            <input type="text" id="suppliedVendor" class="form-control" formControlName="suppliedVendor">
+        </div>
+
+        <div class="mb-3">
+            <label for="materialName" class="form-label">Material Name</label>
+            <input type="text" id="materialName" class="form-control" formControlName="materialName">
+        </div>
+
+        <div class="mb-3">
+            <label for="availableQuantity" class="form-label">Available Quantity</label>
+            <input type="number" id="availableQuantity" class="form-control" formControlName="availableQuantity">
+        </div>
+
+        <div class="mb-3">
+            <label for="issuedQuantity" class="form-label">Issued Quantity</label>
+            <input type="number" id="issuedQuantity" class="form-control" formControlName="issuedQuantity">
+        </div>
+
+        <div class="mb-3">
+            <label for="requiredQuantity" class="form-label">Required Quantity</label>
+            <input type="number" id="requiredQuantity" class="form-control" formControlName="requiredQuantity">
+        </div>
+
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" id="price" class="form-control" formControlName="price">
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Date</label>
+            <input type="date" id="price" class="form-control" formControlName="date">
+        </div>
+
+
+        <button type="submit" class="btn btn-primary" [disabled]="materialForm.invalid">Update Material</button>
+    </form>
+</div>

@@ -1,0 +1,114 @@
+td {
+    .btn {
+        &.btn-warning {
+            margin-right: 10px; // Adds space between the buttons
+        }
+
+        &.btn-success {
+            margin-left: 10px; // Keeps space on the other side as needed
+        }
+    }
+}
+
+td {
+    .btn {
+        margin: 10px; // Adds equal space on both sides of each button
+
+        &:first-child {
+            margin-left: 0; // No extra margin on the left of the first button
+        }
+
+        &:last-child {
+            margin-right: 0; // No extra margin on the right of the last button
+        }
+    }
+}
+
+
+/* Change 'Delete' button to a custom red */
+.btn-danger {
+    background-color: #e74c3c !important;
+    /* Custom red */
+    border-color: #e74c3c !important;
+}
+
+/* Change 'View' buttons to custom green */
+.btn-success {
+    background-color: #2ecc71 !important;
+    /* Custom green */
+    border-color: #2ecc71 !important;
+}
+
+/* Change 'Add' buttons to custom yellow */
+.btn-warning {
+    background-color: #FFD662FF !important;
+    /* Custom yellow */
+    border-color: #f1c40f !important;
+}
+
+
+.project-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-family: Arial, sans-serif;
+}
+
+.project-table thead {
+    background-color: #f9f9f9;
+}
+
+.project-table th,
+.project-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.project-table tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.btn {
+    border: none;
+    padding: 6px 12px;
+    margin: 2px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.btn-view {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.btn-add {
+    background-color: #f1c40f;
+    color: black;
+}
+
+
+.table-hover tbody tr:hover {
+    background-color: #f4f6f9;
+}
+
+.table th,
+.table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.btn {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}

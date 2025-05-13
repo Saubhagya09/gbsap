@@ -13,7 +13,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let project of projects; let i = index">
-            <td>{{project._id }}</td>
+            <td>{{i+1 }}</td>
             <td>{{ project.projectName }}</td>
             <td>{{ project.location }}</td>
             <td>{{ project.typeName }}</td>
@@ -27,15 +27,16 @@
 
             </td>
             <td>
-
+                <button class="btn btn-success btn-sm " (click)="progress_view(project._id)">View</button>
                 <button class="btn btn-warning btn-sm" style="margin-left: 10px;"
                     (click)="progress_add(project._id)">Add</button>
-                <button class="btn btn-success btn-sm " (click)="progress_view(project._id)">View</button>
+
             </td>
             <td>
+                <button class="btn btn-success btn-sm " (click)="materail_view(project._id)">View</button>
                 <button class="btn btn-warning btn-sm" style="margin-left: 10px;"
                     (click)="material_add(project._id)">Add</button>
-                <button class="btn btn-success btn-sm " (click)="materail_view(project._id)">View</button>
+
             </td>
         </tr>
     </tbody>

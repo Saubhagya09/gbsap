@@ -60,7 +60,7 @@ export class TaskViewComponent {
   }
 
   edit(task: any) {
-    console.log("dhdg", task.projectId._id);
+    // console.log("dhdg", task.projectId._id);
 
     this.router.navigate(["/admin/task/edit"], { queryParams: { projectId: task._id } })
 
