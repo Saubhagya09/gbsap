@@ -36,6 +36,7 @@ export class TaskEditComponent {
       assignedTo: ['', Validators.required],
     });
 
+    console.log(this.taskForm);
 
 
 
@@ -69,21 +70,39 @@ export class TaskEditComponent {
   }
 
   onSubmit() {
-    if (!this.projectId || this.taskForm.invalid) return;
+    if (!this.projectId || this.taskForm.invalid) {
+      console.warn('Form invalid or missing ID');
+      return;
+    }
 
-    const updateUrl = `https://backend-sm8m.onrender.com/tasks/${this.projectId}`;
+    console.log(this.taskForm.value);  // Check form values before sending
+
+    // URL to update progress entry
+    const updateUrl = `https://backend-sm8m.onrender.com/progress/${this.projectId}`;
+
+    // Send PUT request to update the progress entry
     this.service.put(updateUrl, this.taskForm.value).subscribe({
       next: (res) => {
+        // Handle successful update response
+        console.log('Updated Progress:', res);
         alert('Task updated successfully!');
-        this.router.navigate(['/admin/task/view'], {
-          queryParams: { id: res.projectId }
+
+        // Redirect to the progress view page after success
+        this.router.navigate(['/admin/progress/view'], {
+          queryParams: { id: res.projectId }  // assuming `projectId` is returned in the response
         });
       },
       error: (err) => {
-        this.error = 'Failed to update task.';
-        console.error(err);
+        // Handle error (for example, "Progress entry not found")
+        if (err.error?.error === 'Progress entry not found') {
+          this.error = 'The progress entry was not found.';
+        } else {
+          this.error = 'Failed to update task. Please try again later.';
+        }
+        console.error('Error during update:', err);
       }
     });
   }
+
 
 }

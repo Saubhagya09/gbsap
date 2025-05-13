@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServiceService } from '../../service.service';
 import { CommonModule } from '@angular/common';
+import { skip } from 'rxjs';
 @Component({
   selector: 'app-progress-view',
   imports: [CommonModule],
@@ -49,7 +50,8 @@ export class ProgressViewComponent {
           expectedDate: task.expectedDate,
           starts: task.starts,
           remarks: task.remarks,
-          vendor: task.vendor
+          vendor: task.vendor,
+          projectId: task.projectId._id
 
 
         }));
@@ -74,9 +76,14 @@ export class ProgressViewComponent {
     });
   }
   edit(progress: any) {
-    console.log("dhdg", progress.id);
+    console.log("dhdg", progress);
+    const progressId = progress.id
+    console.log(progressId);
+    const projectId = progress.projectId
+    console.log(projectId);
 
-    this.router.navigate(["/admin/progress/edit"], { queryParams: { progressId: progress.id } })
+
+    this.router.navigate(["/admin/progress/edit"], { queryParams: { progressId: progressId, projectId: projectId } })
 
   }
 }

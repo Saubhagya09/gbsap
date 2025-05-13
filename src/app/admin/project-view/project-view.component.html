@@ -5,7 +5,7 @@
             <th>Project Name</th>
             <th>Location</th>
             <th>Type Name</th>
-            <th>Action</th>
+            <th>Project</th>
             <th>Task</th>
             <th>Progress</th>
             <th>Material</th>
@@ -19,6 +19,7 @@
             <td>{{ project.typeName }}</td>
             <td>
                 <button class="btn btn-danger btn-sm" (click)="deleteProject(project._id)">Delete</button>
+                <button class="btn btn-info btn-sm" (click)="updateProject(project._id)">Update</button>
             </td>
             <td>
                 <button class="btn btn-success btn-sm " (click)="task_view(project._id)">View</button>

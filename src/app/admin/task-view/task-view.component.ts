@@ -60,9 +60,31 @@ export class TaskViewComponent {
   }
 
   edit(task: any) {
-    // console.log("dhdg", task.projectId._id);
+    console.log("dhdg", task.projectId._id);
+    // console.log(task._id);
+
 
     this.router.navigate(["/admin/task/edit"], { queryParams: { projectId: task._id } })
+
+  }
+  delete(task: any) {
+    console.log(task);
+    const confirmed = confirm(`Are you sure you want to delete the task "${task.taskName}"?`);
+    if (!confirmed) return;
+
+    const url = `https://backend-sm8m.onrender.com/tasks/${task._id}`;
+    this.service.delete(url).subscribe({
+      next: (response: any) => {
+        console.log(response.message || 'Task deleted successfully');
+        // Update UI by removing deleted task from array
+        this.tasks = this.tasks.filter(t => t._id !== task._id);
+        alert('Task deleted successfully!');
+      },
+      error: (err) => {
+        console.error('Delete failed:', err);
+        alert(`Failed to delete task. ${err.error?.error || 'Please try again later.'}`);
+      }
+    });
 
   }
 

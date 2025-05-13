@@ -21,6 +21,10 @@ const routes: Routes = [
                 loadComponent: () => import("./project-add/project-add.component").then(m => m.ProjectAddComponent)
             },
             {
+                path: 'project/edit',
+                loadComponent: () => import("./project-edit/project-edit.component").then(m => m.ProjectEditComponent)
+            },
+            {
                 path: 'task/view',
                 loadComponent: () => import('./task-view/task-view.component').then(m => m.TaskViewComponent)
             },
