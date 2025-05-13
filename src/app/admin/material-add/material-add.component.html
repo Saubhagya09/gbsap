@@ -46,10 +46,20 @@
             <input matInput type="text" formControlName="suppliedVendor" required>
         </mat-form-field>
 
-        <button class="btn btn-primary btn-lg btn-block my-3 py-3 font-weight-bold text-uppercase" type="submit"
-            [disabled]="materialForm.invalid">
-            Add Material Entry
-        </button>
+           <!-- mou -->
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Unit of Measurement</mat-label>
+            <input matInput type="text" formControlName="unitofMeasurement" required>
+        </mat-form-field>
+
+ <button
+  class="btn btn-lg btn-block my-3 py-3 font-weight-bold text-uppercase btn-orange-hover"
+  type="submit"
+  [disabled]="materialForm.invalid">
+  Add Material Entry
+</button>
+
+
 
     </form>
 </div>

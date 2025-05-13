@@ -1,1 +1,57 @@
-<p>inventory-add works!</p>
+<div class="container">
+    <h2>Add Inventory Entry</h2>
+
+    <form [formGroup]="inventoryForm" (ngSubmit)="addInventoryEntry()">
+    <div>
+      <label>Item No:</label>
+      <input type="number" formControlName="itemNo" />
+    </div>
+
+    <div>
+      <label>Material Name:</label>
+      <input type="text" formControlName="materialName" />
+    </div>
+
+    <div>
+      <label>Description:</label>
+      <input type="text" formControlName="description" />
+    </div>
+
+    <div>
+      <label>Unit:</label>
+      <input type="text" formControlName="unit" />
+    </div>
+
+    <div>
+      <label>Quantity:</label>
+      <input type="number" formControlName="quantity" />
+    </div>
+
+    <div>
+      <label>Unit Price:</label>
+      <input type="number" formControlName="unitPrice" />
+    </div>
+
+    <div>
+      <label>Supplier:</label>
+      <input type="text" formControlName="supplier" />
+    </div>
+
+    <div>
+      <label>Notes:</label>
+      <textarea formControlName="notes"></textarea>
+    </div>
+
+    
+ <button
+  class="btn btn-lg btn-block my-3 py-3 font-weight-bold text-uppercase btn-orange-hover"
+  type="submit"
+  [disabled]="inventoryForm.invalid">
+  Add Inventory Entry
+</button>
+  </form>
+
+  <!-- <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p> -->
+</div>
+

@@ -1,1 +1,41 @@
-<p>inventory-view works!</p>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">itemNo</th>
+      <th scope="col">materialName</th>
+      <th scope="col">description</th>
+      <th scope="col">unit</th>
+
+      <th scope="col">quantity</th>
+
+      <th scope="col">unitPrice</th>
+      <th scope="col">supplier</th>
+      <th scope="col">notes</th>
+      <!-- <th scope="col">date</th>
+      <th scope="col">Action</th> -->
+
+
+
+    </tr>
+  </thead>
+  <tbody *ngFor="let task of tasks; let i = index">
+    <tr>
+      <th scope="row">{{i+1}}</th>
+
+      <td>{{task.itemNo}}</td>
+      <td>{{task.materialName}}</td>
+      <td>{{ task.description}}</td>
+      <td>{{ task.unit}}</td>
+
+      <td>{{ task.quantity}}</td>
+      <td>{{ task.unitPrice}}</td>
+
+      <td>{{ task.supplier}}</td>
+      <td>{{ task.notes}}</td>
+      <!-- <td> -->
+        <!-- <button class="btn btn-sm btn-edit" (click)="edit(task)">Edit</button> -->
+        <!-- <button class="btn btn-danger btn-sm">Show</button> -->
+      <!-- </td> -->
+    </tr>
+  </tbody>
+</table>

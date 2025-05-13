@@ -10,6 +10,10 @@
 
       <th scope="col">requiredQuantity</th>
       <th scope="col">price</th>
+      <th scope="col">unitofMeasurement</th>
+      <th scope="col">date</th>
+      <th scope="col">Action</th>
+
 
 
     </tr>
@@ -26,8 +30,10 @@
       <td>{{ task.requiredQuantity}}</td>
       <td>{{ task.price}}</td>
 
+      <td>{{ task.unitofMeasurement}}</td>
+      <td>{{ task.date}}</td>
       <td>
-        <button class="btn btn-success btn-sm" (click)="edit(task)">Edit</button>
+        <button class="btn btn-sm btn-edit" (click)="edit(task)">Edit</button>
         <!-- <button class="btn btn-danger btn-sm">Show</button> -->
       </td>
     </tr>

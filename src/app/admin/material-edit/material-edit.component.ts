@@ -28,9 +28,13 @@ export class MaterialEditComponent {
       availableQuantity: ['', Validators.required],
       issuedQuantity: ['', Validators.required],
       requiredQuantity: ['', Validators.required],
+      unitofMeasurement: ['', Validators.required],
+      
       price: ['', Validators.required],
       date: ['', Validators.required]
     });
+    console.log(this.materialForm);
+    
   }
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
@@ -58,6 +62,7 @@ export class MaterialEditComponent {
           availableQuantity: data.availableQuantity,
           issuedQuantity: data.issuedQuantity,
           requiredQuantity: data.requiredQuantity,
+          unitofMeasurement: data.unitofMeasurement,
           price: data.price,
           date: data.date.split('T')[0]
         });

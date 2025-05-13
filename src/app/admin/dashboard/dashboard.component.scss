@@ -104,4 +104,18 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+} 
+
+
+.card {
+  border-radius: 20px;
+  background-color: #fff;
+}
+
+.progress-bar {
+  background-color: #5D5FEF;
+}
+
+.card h5, .card h6 {
+  font-weight: 600;
 }

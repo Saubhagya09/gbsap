@@ -34,6 +34,7 @@ export class MaterialAddComponent {
       issuedQuantity: ['', Validators.required],
       price: ['', Validators.required],
       suppliedVendor: ['', Validators.required],
+      unitofMeasurement: ['', Validators.required],
     });
   }
   ngOnInit(): void {
@@ -59,6 +60,7 @@ export class MaterialAddComponent {
         issuedQuantity: formData.issuedQuantity,
         price: formData.price,
         suppliedVendor: formData.suppliedVendor,
+        unitofMeasurement: formData.unitofMeasurement,
 
       };
       console.log(taskPayload);
