@@ -5,9 +5,10 @@ import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';
 import { ServiceService } from '../../service.service';
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-project-view',
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, MatIconModule],
   templateUrl: './project-view.component.html',
   styleUrl: './project-view.component.scss'
 })

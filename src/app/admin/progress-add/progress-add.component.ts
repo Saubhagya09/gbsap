@@ -42,12 +42,29 @@ export class ProgressAddComponent {
     })
   }
 
-  formatDateToLocalString(date: Date): string {
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
+  // formatDateToLocalString(date: Date): string {
+  //   const year = date.getFullYear();
+  //   const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  //   const day = date.getDate().toString().padStart(2, '0');
+  //   return ${year}-${month}-${day};
+  // } 
+
+  formatDateToLocalString(date: any): string {
+    const parsedDate = new Date(date);
+
+    if (isNaN(parsedDate.getTime())) {
+      throw new Error('Invalid date passed to formatDateToLocalString');
+    }
+
+    const year = parsedDate.getFullYear();
+    const month = String(parsedDate.getMonth() + 1).padStart(2, '0');
+    const day = String(parsedDate.getDate()).padStart(2, '0');
+
     return `${year}-${month}-${day}`;
   }
+
+
+
   addNewProgress() {
     console.log('Submitted Plan:', FormData);
     // handle logic (e.g., send to service or API)
@@ -59,21 +76,11 @@ export class ProgressAddComponent {
 
       // Format the payload to match backend expectations
       const taskPayload = {
-        // projectId: this.projectId,
-        // type: formData.type.trim(),
-        // start: this.formatDateToLocalString(formData.start),
-
-        // percentage: formData.percentage.trim(),
-        // payment: formData.payment.trim(),
-
-        // expectedDate: this.formatDateToLocalString(formData.expectedDate),
-        // vendor: formData.vendor.trim(),
-        // remarks: formData.remarks.trim(),
         projectId: this.projectId,
         type: formData.type?.trim() || '',
         starts: this.formatDateToLocalString(formData.start),
-        percentage: formData.percentage?.trim(),
-        payment: formData.payment?.trim(),
+        percentage: formData.percentage?.toString().trim() || '',
+        payment: formData.payment?.toString().trim() || '',
         expectedDate: this.formatDateToLocalString(formData.expectedDate),
         vendor: formData.vendor?.trim() || '',
         remarks: formData.remark?.trim() || '',

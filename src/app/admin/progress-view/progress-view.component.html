@@ -3,18 +3,18 @@
         <tr>
             <th scope="col">SL.</th>
             <th scope="col">Type</th>
-            <th scope="col">vendor</th>
+            <th scope="col">AssingTo</th>
             <th scope="col">payment</th>
 
             <th scope="col">percentage</th>
 
             <th scope="col">starts</th>
-            <th scope="col">expectedDate</th>
+            <th scope="col">endDate</th>
             <th scope="col">remarks</th>
-            <!-- <th scope="col">Action</th> -->
+            <th scope="col">Action</th>
         </tr>
     </thead>
-    <tbody *ngFor="let progress of tasks; let i = index">
+    <tbody *ngFor="let progress of progress; let i = index">
         <tr>
             <th scope="row">{{i+1}}</th>
 
@@ -26,10 +26,10 @@
             <td>{{ progress.starts}}</td>
             <td>{{ progress.expectedDate}}</td>
             <td>{{progress.remarks}}</td>
-            <!-- <td> -->
-            <!-- <button class="btn btn-danger btn-sm ">Delete</button> -->
-            <!-- <button class="btn btn-info btn-sm" (click)="edit(progress)">Edit</button> -->
-            <!-- </td> -->
+            <td>
+                <button class="btn btn-danger btn-sm " (click)="progress_delete(progress)">Delete</button>
+                <button class="btn btn-info btn-sm" (click)="edit(progress)">Edit</button>
+            </td>
         </tr>
     </tbody>
 </table>

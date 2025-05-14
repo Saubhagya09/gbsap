@@ -16,7 +16,7 @@ export class ProgressEditComponent {
 
   progressId: string | null = null;
   error: string | null = null;
-
+  projectId: string | null = null;
   constructor(private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
@@ -36,8 +36,11 @@ export class ProgressEditComponent {
   ngOnInit(): void {
     // Initialize the form
     this.route.queryParamMap.subscribe(params => {
-      this.progressId = params.get('progress.id');
-      console.log(this.progressId);
+      this.progressId = params.get('progressId');
+      // console.log(this.progressId);
+      this.projectId = params.get('projectId');
+      console.log(this.projectId);
+
 
       if (this.progressId) {
         this.fetchProgress(this.progressId);
@@ -66,7 +69,7 @@ export class ProgressEditComponent {
           starts: task.starts?.substring(0, 10), // trim date if needed
           expectedDate: task.expectedDate?.substring(0, 10),
           remarks: task.remarks,
-          projectId: task.projectId
+          // projectId: task.projectId
         });
 
 
@@ -93,7 +96,7 @@ export class ProgressEditComponent {
       "starts": updatedData.starts,
       "expectedDate": updatedData.expectedDate,
       "remarks": updatedData.remarks,
-      "projectId": updatedData.projectId
+      "projectId": this.projectId
 
 
 
@@ -104,7 +107,7 @@ export class ProgressEditComponent {
         console.log(res);
 
         alert('Progress updated successfully!');
-        this.router.navigate(['/admin/progress/view']);
+        this.router.navigate(['/admin/progress/view'], { queryParams: { id: this.projectId } });
       },
       error: (err) => {
         console.error(err);

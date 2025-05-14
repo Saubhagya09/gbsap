@@ -60,6 +60,8 @@ export class TaskViewComponent {
   }
 
   edit(task: any) {
+    console.log("task_edit", task);
+
     console.log("dhdg", task.projectId._id);
     // console.log(task._id);
 

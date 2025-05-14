@@ -1,57 +1,59 @@
 <div class="container">
-    <h2>Add Inventory Entry</h2>
+  <h2>Add New Inventory</h2>
 
-    <form [formGroup]="inventoryForm" (ngSubmit)="addInventoryEntry()">
-    <div>
-      <label>Item No:</label>
-      <input type="number" formControlName="itemNo" />
-    </div>
+  <form (ngSubmit)="addNewInventory(inventoryForm.value)" #inventoryForm="ngForm">
 
-    <div>
-      <label>Material Name:</label>
-      <input type="text" formControlName="materialName" />
-    </div>
+    <!-- Item No -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Item No</mat-label>
+      <input matInput type="number" id="itemNo" name="itemNo" ngModel required>
+    </mat-form-field>
 
-    <div>
-      <label>Description:</label>
-      <input type="text" formControlName="description" />
-    </div>
+    <!-- Material Name -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Material Name</mat-label>
+      <input matInput type="text" id="materialName" name="materialName" ngModel required>
+    </mat-form-field>
 
-    <div>
-      <label>Unit:</label>
-      <input type="text" formControlName="unit" />
-    </div>
+    <!-- Description -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput id="description" name="description" ngModel rows="3"></textarea>
+    </mat-form-field>
 
-    <div>
-      <label>Quantity:</label>
-      <input type="number" formControlName="quantity" />
-    </div>
+    <!-- Unit -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Unit</mat-label>
+      <input matInput type="text" id="unit" name="unit" ngModel required>
+    </mat-form-field>
 
-    <div>
-      <label>Unit Price:</label>
-      <input type="number" formControlName="unitPrice" />
-    </div>
+    <!-- Quantity -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Quantity</mat-label>
+      <input matInput type="number" id="quantity" name="quantity" ngModel required>
+    </mat-form-field>
 
-    <div>
-      <label>Supplier:</label>
-      <input type="text" formControlName="supplier" />
-    </div>
+    <!-- Unit Price -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Unit Price</mat-label>
+      <input matInput type="number" id="unitPrice" name="unitPrice" ngModel required>
+    </mat-form-field>
 
-    <div>
-      <label>Notes:</label>
-      <textarea formControlName="notes"></textarea>
-    </div>
+    <!-- Supplier -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Supplier</mat-label>
+      <input matInput type="text" id="supplier" name="supplier" ngModel>
+    </mat-form-field>
 
-    
- <button
-  class="btn btn-lg btn-block my-3 py-3 font-weight-bold text-uppercase btn-orange-hover"
-  type="submit"
-  [disabled]="inventoryForm.invalid">
-  Add Inventory Entry
-</button>
+    <!-- Notes -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Notes</mat-label>
+      <textarea matInput id="notes" name="notes" ngModel rows="2"></textarea>
+    </mat-form-field>
+
+    <!-- Submit Button -->
+    <button mat-raised-button color="primary" type="submit" [disabled]="inventoryForm.invalid">
+      Add Inventory
+    </button>
   </form>
-
-  <!-- <p *ngIf="successMessage" class="success">{{ successMessage }}</p>
-  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p> -->
 </div>
-

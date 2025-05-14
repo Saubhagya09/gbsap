@@ -10,8 +10,8 @@ import { skip } from 'rxjs';
   styleUrl: './progress-view.component.scss'
 })
 export class ProgressViewComponent {
-  progressId: string | null = null;
-  tasks: any[] = [];
+  projectId: string | null = null;
+  progress: any[] = [];
   loading = true;
   error: string | null = null;
 
@@ -21,10 +21,10 @@ export class ProgressViewComponent {
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
-      this.progressId = params.get("id")
-      console.log(this.progressId)
-      if (this.progressId) {
-        this.fetchProgressByProject(this.progressId);
+      this.projectId = params.get("id")
+      console.log("project", this.projectId)
+      if (this.projectId) {
+        this.fetchProgressByProject(this.projectId);
       } else {
         console.error('No process ID found in the URL!');
       }
@@ -42,7 +42,7 @@ export class ProgressViewComponent {
         // this.tasks = response;
 
         // Map response.data to extract percentage and type
-        this.tasks = response.data.map((task: any) => ({
+        this.progress = response.data.map((task: any) => ({
           id: task._id,
           type: task.type,
           percentage: task.percentage,
@@ -56,7 +56,7 @@ export class ProgressViewComponent {
 
         }));
         this.loading = false;
-        console.log(this.tasks)
+        console.log(this.progress)
       },
 
 
@@ -76,14 +76,34 @@ export class ProgressViewComponent {
     });
   }
   edit(progress: any) {
-    console.log("dhdg", progress);
-    const progressId = progress.id
-    console.log(progressId);
+    console.log("progress", progress);
+    const progressId = progress.id   //////issue
+    console.log("progress", progressId);
     const projectId = progress.projectId
-    console.log(projectId);
+    console.log("project", projectId);
 
 
     this.router.navigate(["/admin/progress/edit"], { queryParams: { progressId: progressId, projectId: projectId } })
 
   }
+  progress_delete(progress: any) {
+    console.log(progress);
+    const confirmed = confirm(`Are you sure you want to delete the task "${progress.type}"?`);
+    if (!confirmed) return;
+
+    const url = `https://backend-sm8m.onrender.com/progress/${progress.id}`;
+    this.service.delete(url).subscribe({
+      next: (response: any) => {
+        console.log(response.message || 'progress deleted successfully');
+        // Update UI by removing deleted task from array
+        this.progress = this.progress.filter(t => t.id !== progress.id);
+        alert('Task deleted successfully!');
+      },
+      error: (err) => {
+        console.error('Delete failed:', err);
+        alert(`Failed to delete progress. ${err.error?.error || 'Please try again later.'}`);
+      }
+    });
+  }
 }
+

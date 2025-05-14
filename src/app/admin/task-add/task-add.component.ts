@@ -48,12 +48,26 @@ export class TaskAddComponent {
     })
   }
 
-  formatDateToLocalString(date: Date): string {
-    const year = date.getFullYear();
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const day = date.getDate().toString().padStart(2, '0');
-    return `${year}-${month}-${day}`;
+  // formatDateToLocalString(date: Date): string {
+  //   const year = date.getFullYear();
+  //   const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  //   const day = date.getDate().toString().padStart(2, '0');
+  //   return `${year}-${month}-${day}`;
+  // }
+  formatDateToLocalString(date: any): string {
+    const parsedDate = new Date(date);
+
+    if (isNaN(parsedDate.getTime())) {
+      throw new Error('Invalid date passed to formatDateToLocalString');
+    }
+
+    const year = parsedDate.getFullYear();
+    const month = String(parsedDate.getMonth() + 1).padStart(2, '0');
+    const day = String(parsedDate.getDate()).padStart(2, '0');
+
+    return `${year} -${month} -${day}`;
   }
+
 
   addNewPlan() {
     if (this.taskForm.valid) {
