@@ -1,15 +1,26 @@
-<table class="table table-bordered">
+<!-- Loading Spinner -->
+<div *ngIf="loading" class="spinner">
+    <mat-spinner diameter="50"></mat-spinner> <!-- Angular Material spinner -->
+    <p>Loading progress item...</p>
+</div>
+
+<!-- Error Message -->
+<div *ngIf="errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+</div>
+
+<table class="table table-bordered" *ngIf="!loading && !errorMessage">
     <thead>
         <tr>
             <th scope="col">SL.</th>
             <th scope="col">Type</th>
             <th scope="col">AssingTo</th>
-            <th scope="col">payment</th>
+            <th scope="col">Payment</th>
 
-            <th scope="col">percentage</th>
+            <th scope="col">Percentage</th>
 
-            <th scope="col">starts</th>
-            <th scope="col">endDate</th>
+            <th scope="col">Starts</th>
+            <th scope="col">EndDate</th>
             <th scope="col">remarks</th>
             <th scope="col">Action</th>
         </tr>

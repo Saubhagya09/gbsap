@@ -6,7 +6,7 @@ import { ServiceService } from '../../service.service';
 
 @Component({
   selector: 'app-material-edit',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,],
   templateUrl: './material-edit.component.html',
   styleUrl: './material-edit.component.scss'
 })
@@ -29,12 +29,12 @@ export class MaterialEditComponent {
       issuedQuantity: ['', Validators.required],
       requiredQuantity: ['', Validators.required],
       unitofMeasurement: ['', Validators.required],
-      
+
       price: ['', Validators.required],
       date: ['', Validators.required]
     });
     console.log(this.materialForm);
-    
+
   }
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {

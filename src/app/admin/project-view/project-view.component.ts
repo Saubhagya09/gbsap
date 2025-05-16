@@ -6,9 +6,10 @@ import { of } from 'rxjs';
 import { Router } from '@angular/router';
 import { ServiceService } from '../../service.service';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @Component({
   selector: 'app-project-view',
-  imports: [CommonModule, HttpClientModule, MatIconModule],
+  imports: [CommonModule, HttpClientModule, MatIconModule, MatProgressSpinnerModule],
   templateUrl: './project-view.component.html',
   styleUrl: './project-view.component.scss'
 })
@@ -17,7 +18,9 @@ export class ProjectViewComponent {
   projectId: string | null = null;
   tasks: any[] = [];
   loading = true;
-  error: string | null = null;
+  error: string = "";
+  pageerror: string = ""
+
 
   constructor(private http: HttpClient, private router: Router, private service: ServiceService) { }
 
@@ -27,6 +30,8 @@ export class ProjectViewComponent {
 
   // Fetch all projects
   fetchProjects(): void {
+    this.loading = true; // Start loading
+    this.pageerror = ''; // Reset error message
     this.http.get<any[]>('https://backend-sm8m.onrender.com/projects')
       .subscribe({
         next: (data) => {
@@ -34,10 +39,12 @@ export class ProjectViewComponent {
           this.projects = data.sort((a, b) =>
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
           );
+          this.loading = false; // Stop loading
         },
         error: (err) => {
           console.error('Failed to fetch projects:', err);
           alert('Error loading projects. Please try again later.');
+          this.loading = false; // Stop loading
         }
       });
   }
@@ -98,7 +105,8 @@ export class ProjectViewComponent {
           const confirmAdd = confirm('No tasks found. Do you want to add a task?');
           if (confirmAdd) {
             this.router.navigate(['/admin/task/add'], { queryParams: { id: id } });
-          } else {
+          }
+          else {
             this.error = 'Failed to load tasks. Please try again later.';
           }
         }

@@ -3,9 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ServiceService } from '../../service.service';
 import { CommonModule } from '@angular/common';
 import { skip } from 'rxjs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @Component({
   selector: 'app-progress-view',
-  imports: [CommonModule],
+  imports: [CommonModule, MatProgressSpinnerModule],
   templateUrl: './progress-view.component.html',
   styleUrl: './progress-view.component.scss'
 })
@@ -15,6 +16,7 @@ export class ProgressViewComponent {
   loading = true;
   error: string | null = null;
 
+  errorMessage: string = ''; // To handle error state
   constructor(private route: ActivatedRoute, private service: ServiceService, private router: Router) {
 
   }
@@ -34,6 +36,8 @@ export class ProgressViewComponent {
 
   // Called when "Create" button is clicked
   fetchProgressByProject(id: string): void {
+    this.loading = true
+    this.errorMessage = ''; // Reset error message
     const url = `https://backend-sm8m.onrender.com/progress/project/${id}`;
     this.service.get(url).subscribe({
       next: (response: any) => {

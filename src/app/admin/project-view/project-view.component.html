@@ -1,5 +1,16 @@
 <div class="table-responsive-custom">
-    <table class="table table-bordered table-striped">
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="spinner">
+        <mat-spinner diameter="50"></mat-spinner> <!-- Angular Material spinner -->
+        <p>Loading project view...</p>
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="pageerror" class="error-message">
+        <p>{{ pageerror }}</p>
+    </div>
+
+    <table class="table table-bordered table-striped" *ngIf="!loading && !pageerror">
         <thead>
             <tr>
                 <th>ID</th>

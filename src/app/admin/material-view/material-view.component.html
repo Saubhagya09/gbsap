@@ -1,17 +1,27 @@
-<table class="table table-bordered">
+<!-- Loading Spinner -->
+<div *ngIf="loading" class="spinner">
+  <mat-spinner diameter="50"></mat-spinner> <!-- Angular Material spinner -->
+  <p>Loading inventory items...</p>
+</div>
+
+<!-- Error Message -->
+<div *ngIf="errorMessage" class="error-message">
+  <p>{{ errorMessage }}</p>
+</div>
+<table class="table table-bordered" *ngIf="!loading && !errorMessage">
   <thead>
     <tr>
       <th scope="col">SL.</th>
-      <th scope="col">SuppliedVendor</th>
-      <th scope="col">materialName</th>
-      <th scope="col">availableQuantity</th>
+      <th scope="col">Supplied Vendor</th>
+      <th scope="col">Material Name</th>
+      <th scope="col">Available Quantity</th>
 
-      <th scope="col">issuedQuantity</th>
+      <th scope="col">Issued Quantity</th>
 
-      <th scope="col">requiredQuantity</th>
-      <th scope="col">price</th>
-      <th scope="col">unitofMeasurement</th>
-      <th scope="col">date</th>
+      <th scope="col">Required Quantity</th>
+      <th scope="col">Price</th>
+      <th scope="col">UOM</th>
+      <th scope="col">Date</th>
       <th scope="col">Action</th>
 
 

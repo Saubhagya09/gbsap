@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Router } from '@angular/router';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -20,7 +21,7 @@ export class InventoryViewComponent {
 
   private baseUrl = 'https://backend-sm8m.onrender.com/inventory'; // API URL for inventory items
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
     this.fetchInventoryItems(); // Fetch inventory items on component initialization
@@ -33,6 +34,8 @@ export class InventoryViewComponent {
 
     this.http.get<any[]>(this.baseUrl).subscribe({
       next: (data) => {
+        console.log(data);
+
         this.tasks = data; // Store fetched data in tasks
         this.loading = false; // Stop loading
       },
@@ -64,6 +67,10 @@ export class InventoryViewComponent {
         }
       });
   }
+  editInventory(inventory: any) {
+    console.log(inventory);
+    this.router.navigate(['/admin/inventory/edit'], { queryParams: { id: inventory._id } });
 
+  }
 
 }

@@ -68,6 +68,10 @@ const routes: Routes = [
                 path: 'inventory/add',
                 loadComponent: () => import('./inventory-add/inventory-add.component').then(m => m.InventoryAddComponent)
             },
+            {
+                path: 'inventory/edit',
+                loadComponent: () => import('./inventory-edit/inventory-edit.component').then(m => m.InventoryEditComponent)
+            },
 
             {
                 path: 'vendor/view',
@@ -76,6 +80,18 @@ const routes: Routes = [
             {
                 path: 'vendor/add',
                 loadComponent: () => import('./vender-list-add/vender-list-add.component').then(m => m.VenderListAddComponent)
+            },
+            {
+                path: 'vendor/edit',
+                loadComponent: () => import('./vendor-edit/vendor-edit.component').then(m => m.VendorEditComponent)
+            },
+            {
+                path: 'purchase/book',
+                loadComponent: () => import('./purchase-book/purchase-book.component').then(m => m.PurchaseBookComponent)
+            },
+            {
+                path: 'purchase/bill',
+                loadComponent: () => import('./purches-bill/purches-bill.component').then(m => m.PurchesBillComponent)
             },
 
 

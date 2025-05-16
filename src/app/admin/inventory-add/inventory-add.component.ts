@@ -36,6 +36,7 @@ export class InventoryAddComponent {
       quantity: formData.quantity,
       unitPrice: formData.unitPrice,
       supplier: formData.supplier,
+
       notes: formData.notes
     };
 

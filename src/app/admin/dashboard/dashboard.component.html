@@ -1,1 +1,114 @@
-<p>works</p>
+<div class="container py-4">
+    <!-- Loading and Error States -->
+    <div *ngIf="loading" class="text-center text-muted">Loading dashboard data...</div>
+    <div *ngIf="error" class="alert alert-danger text-center">{{ error }}</div>
+
+    <!-- Dashboard Cards -->
+    <div *ngIf="!loading && dashboardData" class="row g-3 justify-content-between">
+        <!-- Total Project -->
+        <div class="col-md-2">
+            <div class="dashboard-card text-dark" style="background-color: #6f42c1;">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="icon"><i class="bi bi-diagram-3-fill"></i></div>
+                    <div>
+                        <h6>Total Project</h6>
+                        <h4>{{ dashboardData.totalProjects }}</h4>
+                    </div>
+                </div>
+                <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-dark" style="width: 85%;"></div>
+                </div>
+                <small class="d-block mt-2">Last updated today</small>
+            </div>
+        </div>
+
+        <!-- Total Task -->
+        <div class="col-md-2">
+            <div class="dashboard-card text-dark" style="background-color: #007bff;">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="icon"><i class="bi bi-list-task"></i></div>
+                    <div>
+                        <h6>Total Task</h6>
+                        <h4>{{ dashboardData.totalTasks }}</h4>
+                    </div>
+                </div>
+                <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-dark" style="width: 70%;"></div>
+                </div>
+                <small class="d-block mt-2">Last updated today</small>
+            </div>
+        </div>
+
+        <!-- Tasks To Do -->
+        <div class="col-md-2">
+            <div class="dashboard-card text-dark" style="background-color: #ffc107;">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="icon text-dark"><i class="bi bi-hourglass-split"></i></div>
+                    <div>
+                        <h6>Tasks To Do</h6>
+                        <h4>{{ dashboardData.taskSummary.toDo }}</h4>
+                    </div>
+                </div>
+                <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-dark"
+                        [style.width.%]="(dashboardData.taskSummary.toDo / dashboardData.totalTasks) * 100"></div>
+                </div>
+                <small class="d-block mt-2">
+                    {{ (dashboardData.taskSummary.toDo / dashboardData.totalTasks) * 100 | number: '1.0-0' }}% Remaining
+                </small>
+            </div>
+        </div>
+
+        <!-- Tasks In Progress -->
+        <div class="col-md-3">
+            <div class="dashboard-card text-dark" style="background-color: #17a2b8;">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="icon"><i class="bi bi-arrow-repeat"></i></div>
+                    <div>
+                        <h6>Tasks In Progress</h6>
+                        <h4>{{ dashboardData.taskSummary.inProgress }}</h4>
+                    </div>
+                </div>
+                <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-dark"
+                        [style.width.%]="(dashboardData.taskSummary.inProgress / dashboardData.totalTasks) * 100"></div>
+                </div>
+                <small class="d-block mt-2">
+                    {{ (dashboardData.taskSummary.inProgress / dashboardData.totalTasks) * 100 | number: '1.0-0' }}%
+                    Active
+                </small>
+            </div>
+        </div>
+
+        <!-- Tasks Completed -->
+        <div class="col-md-3">
+            <div class="dashboard-card text-dark" style="background-color: #218838;">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="icon"><i class="bi bi-check-circle-fill"></i></div>
+                    <div>
+                        <h6>Tasks Completed</h6>
+                        <h4>{{ dashboardData.taskSummary.completed }}</h4>
+                    </div>
+                </div>
+                <div class="progress" style="height: 6px;">
+                    <div class="progress-bar bg-dark"
+                        [style.width.%]="(dashboardData.taskSummary.completed / dashboardData.totalTasks) * 100"></div>
+                </div>
+                <small class="d-block mt-2">
+                    {{ (dashboardData.taskSummary.completed / dashboardData.totalTasks) * 100 | number: '1.0-0' }}% Done
+                </small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calendar Section -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <mat-card class="demo-inline-calendar-card">
+                <mat-calendar [(selected)]="selected"></mat-calendar>
+            </mat-card>
+            <!-- <p>Selected date: {{selected()}}</p> -->
+
+        </div>
+    </div>
+</div>

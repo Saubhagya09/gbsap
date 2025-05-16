@@ -107,6 +107,32 @@ const navitems: NavItem[] = [
       }
     ]
   },
+
+  {
+    parent: true,
+    displayName: 'Purchase',
+    iconName: 'dns',
+    show: 'N/A',
+    type: true,
+    children: [
+      {
+        parent: false,
+        displayName: 'Purchase Bill',
+        iconName: 'add_circle',
+        route: 'purchase/bill',
+        show: 'N/A',
+        type: true
+      },
+      {
+        parent: false,
+        displayName: 'Purchase Book',
+        iconName: 'visibility',
+        route: 'purchase/book',
+        show: 'N/A',
+        type: true
+      }
+    ]
+  },
   // {
   //   parent: true,
   //   displayName: 'Taskmanager',

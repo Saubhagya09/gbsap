@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ServiceService } from '../../service.service';
 import { CommonModule } from '@angular/common';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @Component({
   selector: 'app-material-view',
-  imports: [CommonModule],
+  imports: [CommonModule, MatProgressSpinnerModule],
   templateUrl: './material-view.component.html',
   styleUrl: './material-view.component.scss'
 })
@@ -16,7 +16,7 @@ export class MaterialViewComponent {
   loading = true;
   error: string | null = null;
   signInModal: any;
-
+  errorMessage: string = ''; // To handle error stat
   constructor(private route: ActivatedRoute, private service: ServiceService, private router: Router) { }
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
@@ -33,9 +33,12 @@ export class MaterialViewComponent {
 
 
   fetchTasksByProject(id: string): void {
+    this.loading = true
+    this.errorMessage = ''; // Reset error message
     const url = `https://backend-sm8m.onrender.com/materials/project/${id}`;
     this.service.get(url).subscribe({
       next: (response: any) => {
+        this.loading = false
         console.log(response);
 
         this.tasks = response;
@@ -45,6 +48,7 @@ export class MaterialViewComponent {
 
 
       error: (err) => {
+        this.loading = false; // Stop loading
         this.error = 'Failed to load tasks. Please try again later.';
         console.error('API error:', err);
         this.loading = false;

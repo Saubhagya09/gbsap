@@ -1,1 +1,55 @@
-<p>vender-list-add works!</p>
+<form [formGroup]="vendorForm" (ngSubmit)="addVendor()" class="container mt-4 p-4 border rounded shadow-sm bg-white">
+    <h4 class="mb-4">Add New Vendor</h4>
+
+    <!-- Business Type -->
+    <div class="mb-3">
+        <label for="businessType" class="form-label">Business Type</label>
+        <input id="businessType" formControlName="businessType" type="text" class="form-control">
+    </div>
+
+    <!-- Vendor Name -->
+    <div class="mb-3">
+        <label for="vendorName" class="form-label">Vendor Name</label>
+        <input id="vendorName" formControlName="vendorName" type="text" class="form-control">
+    </div>
+
+    <!-- Vendor Trade Name -->
+    <div class="mb-3">
+        <label for="vendorTradeName" class="form-label">Vendor Trade Name</label>
+        <input id="vendorTradeName" formControlName="vendorTradeName" type="text" class="form-control">
+    </div>
+
+    <!-- GST Number -->
+    <div class="mb-3">
+        <label for="gstNumber" class="form-label">GST Number</label>
+        <input id="gstNumber" formControlName="gstNumber" type="text" class="form-control">
+    </div>
+
+    <!-- Vendor Location -->
+    <div class="mb-3">
+        <label for="vendorLocation" class="form-label">Location</label>
+        <input id="vendorLocation" formControlName="vendorLocation" type="text" class="form-control">
+    </div>
+
+    <!-- Contact Number -->
+    <div class="mb-3">
+        <label for="contactNumber" class="form-label">Contact Number</label>
+        <input id="contactNumber" formControlName="contactNumber" type="tel" class="form-control">
+    </div>
+
+    <!-- PIN Code -->
+    <div class="mb-3">
+        <label for="pinCode" class="form-label">PIN Code</label>
+        <input id="pinCode" formControlName="pinCode" type="text" class="form-control">
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary" [disabled]="loading">
+        {{ loading ? 'Adding...' : 'Add Vendor' }}
+    </button>
+</form>

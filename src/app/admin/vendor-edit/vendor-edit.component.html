@@ -1,0 +1,27 @@
+<form [formGroup]="vendorForm" (ngSubmit)="onSubmit()">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Business Type</th>
+                <th>Vendor Name</th>
+                <th>Vendor Trade Name</th>
+                <th>Vendor Location</th>
+                <th>GST Number</th>
+                <th>Contact Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input class="form-control" formControlName="businessType" /></td>
+                <td><input class="form-control" formControlName="vendorName" /></td>
+                <td><input class="form-control" formControlName="vendorTradeName" /></td>
+                <td><input class="form-control" formControlName="vendorLocation" /></td>
+                <td><input class="form-control" formControlName="gstNumber" /></td>
+                <td><input class="form-control" formControlName="contactNumber" /></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="btn btn-primary" [disabled]="vendorForm.invalid">Update Vendor</button>
+    <!-- <button class="btn btn-secondary ms-2" (click)="goBack()">Cancel</button> -->
+</form>

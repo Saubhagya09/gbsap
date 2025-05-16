@@ -20,10 +20,12 @@
         <th scope="col">Item No</th>
         <th scope="col">Material Name</th>
         <th scope="col">Description</th>
-        <th scope="col">Unit</th>
+        <th scope="col">UOM</th>
         <th scope="col">Quantity</th>
         <th scope="col">Unit Price</th>
+        <th scope="col">Total Price</th>
         <th scope="col">Supplier</th>
+        <th scope="col">Location</th>
         <th scope="col">Notes</th>
         <th scope="col">Action</th>
 
@@ -38,10 +40,12 @@
         <td>{{ task.unit }}</td>
         <td>{{ task.quantity }}</td>
         <td>{{ task.unitPrice }}</td>
+        <td>{{ task.totalCost }}</td>
         <td>{{ task.supplier }}</td>
+        <td>{{ task.location }}</td>
         <td>{{ task.notes }}</td>
         <td>
-          <!-- <button class="btn btn-success btn-sm" (click)="editInventory(task._id, i)">Edit</button> -->
+          <button class="btn btn-success btn-sm" (click)="editInventory(task)">Edit</button>
           <button class="btn btn-danger btn-sm" (click)="deleteInventory(task._id, i)">Delete</button>
 
 

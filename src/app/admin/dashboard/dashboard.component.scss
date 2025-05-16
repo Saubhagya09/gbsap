@@ -1,121 +1,54 @@
-/* Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Layout */
-.main-layout {
-    display: flex;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-}
-
-/* Sidebar */
-.sidebar {
-    width: 240px;
-    background-color: #fff;
-    border-right: 1px solid #ddd;
+.dashboard-card {
+    border-radius: 16px;
     padding: 20px;
+    min-height: 160px;
 }
 
-.sidebar .logo {
+.dashboard-card h6 {
+    font-size: 13px;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+
+.dashboard-card h4 {
     font-weight: bold;
-    color: green;
-    font-size: 18px;
-    margin-bottom: 20px;
+    font-size: 20px;
+    margin-top: 5px;
 }
 
-.sidebar nav ul {
-    list-style: none;
-}
-
-.sidebar nav li {
-    margin-bottom: 15px;
-    font-size: 15px;
-    display: flex;
-    gap: 10px;
+.dashboard-card .icon {
+    font-size: 36px;
+    padding: 12px;
+    background: white;
+    color: inherit;
+    border-radius: 50%;
+    display: inline-flex;
     align-items: center;
-    cursor: pointer;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
 }
 
-/* Main Content */
-.main-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+.dashboard-card small {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.9);
 }
 
-/* Topbar */
-.topbar {
-    background-color: #fff;
-    padding: 10px 20px;
-    border-bottom: 1px solid #ddd;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.col-md-2,
+.col-md-3 {
+    flex: 0 0 auto;
+    width: 18%;
 }
 
-.topbar .right {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+@media (max-width: 768px) {
+
+    .col-md-2,
+    .col-md-3 {
+        width: 100% !important;
+    }
 }
 
-.topbar input[type="text"] {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
 
-/* Cards Section */
-.cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    padding: 30px;
-    background-color: #f8f9fa;
-}
-
-.card {
-    flex: 1 1 calc(25% - 20px);
-    /* 4 cards per row, with spacing */
-    background-color: #007bff;
-    color: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    min-width: 200px;
-}
-
-.card h4 {
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-.card h2 {
-    font-size: 28px;
-    margin-bottom: 5px;
-}
-
-html,
-body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-} 
-
-
-.card {
-  border-radius: 20px;
-  background-color: #fff;
-}
-
-.progress-bar {
-  background-color: #5D5FEF;
-}
-
-.card h5, .card h6 {
-  font-weight: 600;
+.demo-inline-calendar-card {
+    width: 300px;
 }

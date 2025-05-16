@@ -1,15 +1,26 @@
-<table class="table table-bordered">
+<!-- Loading Spinner -->
+<div *ngIf="loading" class="spinner">
+    <mat-spinner diameter="50"></mat-spinner> <!-- Angular Material spinner -->
+    <p>Loading inventory items...</p>
+</div>
+
+<!-- Error Message -->
+<div *ngIf="error" class="error-message">
+    <p>{{ error }}</p>
+</div>
+
+<table class="table table-bordered" *ngIf="!loading && !error">
     <thead>
         <tr>
             <th scope="col">SL.</th>
             <th scope="col">Task Name</th>
-            <th scope="col">status</th>
-            <th scope="col">taskType</th>
+            <th scope="col">Status</th>
+            <th scope="col">Task Type</th>
 
-            <th scope="col">assignedTo</th>
+            <th scope="col">Assigned To</th>
 
-            <th scope="col">startDate</th>
-            <th scope="col">dueDate</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">Due Date</th>
             <th scope="col">Action</th>
         </tr>
     </thead>

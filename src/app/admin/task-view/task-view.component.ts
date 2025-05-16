@@ -3,9 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ServiceService } from '../../service.service';
 import { CommonModule } from '@angular/common';
 declare var bootstrap: any;
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @Component({
   selector: 'app-task-view',
-  imports: [CommonModule],
+  imports: [CommonModule, MatProgressSpinnerModule],
   templateUrl: './task-view.component.html',
   styleUrl: './task-view.component.scss'
 })
@@ -32,13 +33,15 @@ export class TaskViewComponent {
 
 
   fetchTasksByProject(id: string): void {
+    this.loading = true; // Start loading
     const url = `https://backend-sm8m.onrender.com/tasks/project/${id}`;
     this.service.get(url).subscribe({
       next: (response: any) => {
+
         console.log(response);
 
         this.tasks = response;
-        this.loading = false;
+        this.loading = false; //loading finished
         console.log(this.tasks)
       },
 
