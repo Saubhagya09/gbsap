@@ -133,6 +133,56 @@ const navitems: NavItem[] = [
       }
     ]
   },
+  {
+    parent: true,
+    displayName: 'Sell',
+    iconName: 'dns',
+    show: 'N/A',
+    type: true,
+    children: [
+      {
+        parent: false,
+        displayName: 'Sell Bill',
+        iconName: 'add_circle',
+        route: 'sell/bill',
+        show: 'N/A',
+        type: true
+      },
+      {
+        parent: false,
+        displayName: 'Sell Book',
+        iconName: 'visibility',
+        route: 'sell/book',
+        show: 'N/A',
+        type: true
+      }
+    ]
+  },
+  {
+    parent: true,
+    displayName: 'Employee Details',
+    iconName: 'games',
+    show: 'N/A',
+    type: true,
+    children: [
+      {
+        parent: false,
+        displayName: 'View',
+        iconName: 'visibility',
+        route: 'employment/view',
+        show: 'N/A',
+        type: true
+      },
+      {
+        parent: false,
+        displayName: 'Add',
+        iconName: 'add_circle',
+        route: 'employment/add',
+        show: 'N/A',
+        type: true
+      }
+    ]
+  },
   // {
   //   parent: true,
   //   displayName: 'Taskmanager',

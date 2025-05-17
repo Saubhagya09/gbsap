@@ -1,0 +1,54 @@
+<div class="container mt-5">
+    <div class=" shadow-lg rounded-4 p-4 mx-auto" style="max-width: 600px;">
+        <div class="card-header mb-4 text-white">
+            <h4 class="text-center text-primary simple-heading">Edit Employee Details</h4>
+        </div>
+
+
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <div class="form-group">
+                    <label>Name:</label>
+                    <input type="text" class="form-control" formControlName="name" />
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="form-group">
+                    <label>Contact Name:</label>
+                    <input type="text" class="form-control" formControlName="contactNumber" />
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" class="form-control" formControlName="email" />
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="form-group">
+                    <label>Role:</label>
+                    <input type="text" class="form-control" formControlName="role" />
+                </div>
+            </div>
+            <div class="mb-3">
+                <div class="form-group">
+                    <label>Department:</label>
+                    <input type="text" class="form-control" formControlName="department" />
+                </div>
+            </div>
+
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg" [disabled]="userForm.invalid">Update</button>
+            </div>
+            <!-- <button class="btn btn-secondary" (click)="cancel()">Cancel</button> -->
+        </form>
+    </div>
+
+    <ng-template #loadingTemplate>
+        <div class="spinner">
+            <mat-spinner diameter="50"></mat-spinner>
+            <p>Loading Employee Details...</p>
+        </div>
+    </ng-template>

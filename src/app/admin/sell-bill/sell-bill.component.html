@@ -1,0 +1,143 @@
+<div class="card shadow p-4 mb-5 bg-white rounded">
+    <div class="card-body">
+        <form [formGroup]="sellForm" (ngSubmit)="submitBill()" class="invoice-form">
+            <div class="d-flex justify-content-between">
+                <h2>Sell Invoice</h2>
+
+                <!-- Invoice & Vendor Info -->
+
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            <input type="text" formControlName="invoiceDate" placeholder="Invoice Date"
+                                class="form-control" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <!-- Bill To -->
+                <fieldset formGroupName="billTo" class="mb-3">
+                    <legend>Bill To</legend>
+                    <input class="form-control mb-2" formControlName="name" placeholder="Name" />
+                    <input class="form-control" formControlName="address" placeholder="Address" />
+                </fieldset>
+
+                <!-- Ship To -->
+                <fieldset formGroupName="shipTo" class="mb-3">
+                    <legend>Ship To</legend>
+                    <input class="form-control mb-2" formControlName="name" placeholder="Name" />
+                    <input class="form-control" formControlName="address" placeholder="Address" />
+                </fieldset>
+            </div>
+
+            <hr style="height: 2px; background-color: black; border: none" />
+
+
+
+            <!-- <button type="submit" [disabled]="sellForm.invalid">🧾 Submit Invoice</button> -->
+            <!-- Item List -->
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">🧾 Item List</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered align-middle text-center">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>SL</th>
+                                    <th>Description</th>
+                                    <th>HSN</th>
+                                    <th>Qty</th>
+                                    <th>Rate</th>
+                                    <th>Discount</th>
+                                    <!-- <th>Total amount</th> -->
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody formArrayName="items">
+                                <tr *ngFor="let item of items.controls; let i = index" [formGroupName]="i">
+                                    <td>{{i+1}}</td>
+                                    <td><input type="text" class="form-control" formControlName="description"
+                                            placeholder="Product Name" /></td>
+                                    <td><input type="text" class="form-control" formControlName="hsn"
+                                            placeholder="HSN Code" /></td>
+                                    <td><input type="number" class="form-control" formControlName="qty"
+                                            placeholder="Qty" /></td>
+                                    <td><input type="number" class="form-control" formControlName="rate"
+                                            placeholder="Rate" /></td>
+                                    <td><input type="number" class="form-control" formControlName="discount"
+                                            placeholder="Discount" /></td>
+                                    <td>
+
+                                    <td>
+                                        <button type="button" class="btn btn-outline-danger btn-sm"
+                                            (click)="removeItem(i)" *ngIf="items.length > 1">
+                                            🗑️
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button type="button" class="btn btn-outline-success" (click)="addItem()">➕ Add Item</button>
+
+                </div>
+            </div>
+
+            <!-- Taxes & Payment -->
+            <div class="card mb-4">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">💰 Tax & Payment Details</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <input type="number" class="form-control" formControlName="cgstPercent"
+                                placeholder="CGST %" />
+                        </div>
+                        <div class="col-md-6">
+                            <input type="number" class="form-control" formControlName="sgstPercent"
+                                placeholder="SGST %" />
+                        </div>
+                        <div class="col-md-6">
+                            <select class="form-select" formControlName="modeOfPayment">
+                                <option value="" disabled selected>Select Mode of Payment</option>
+                                <option value="Cash">Cash</option>
+                                <option value="Card">Card</option>
+                                <option value="Cheque">Cheque</option>
+                            </select>
+                        </div>
+
+                        <!-- Conditional Bank Details (Shown only if 'Cash') -->
+                        <!-- <ng-container *ngIf="sellForm.get('modeOfPayment')?.value === 'Cash'">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" formControlName="bankName"
+                                    placeholder="Bank Name" />
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" formControlName="accountNumber"
+                                    placeholder="Account Number" />
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" formControlName="ifscCode"
+                                    placeholder="IFSC Code" />
+                            </div>
+                        </ng-container> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary px-4" [disabled]="sellForm.invalid">
+                    🧾 Submit Invoice
+                </button>
+            </div>
+
+
+        </form>
+    </div>
+</div>

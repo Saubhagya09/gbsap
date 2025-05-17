@@ -3,18 +3,28 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
-// Angular Material Modules (used for dashboard UI only)
+// Angular Material Modules
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 // FullCalendar
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { CalendarOptions } from '@fullcalendar/core';
-import { MatCardModule } from '@angular/material/card';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 
+// Chart Component
+// import { TaskPieChartComponent } from '../task-pie-chart/task-pie-chart.component';
+import { ChartComponent } from '../charts/charts.component';
+import {
+  trigger,
+  transition,
+  style,
+  animate,
+  keyframes,
+} from '@angular/animations';
 
 
 // Interfaces
@@ -40,20 +50,38 @@ interface DashboardMetrics {
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    FullCalendarModule,
     MatCardModule,
     MatDatepickerModule,
-
+    FullCalendarModule,
+    ChartComponent
   ],
-
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
+  animations: [
+    trigger('bounceIn', [
+      transition(':enter', [
+        animate(
+          '800ms ease-in',
+          keyframes([
+            style({ opacity: 0, transform: 'scale(0.3)', offset: 0 }),
+            style({ opacity: 1, transform: 'scale(1.05)', offset: 0.5 }),
+            style({ transform: 'scale(0.95)', offset: 0.7 }),
+            style({ opacity: 1, transform: 'scale(1)', offset: 1 }),
+          ])
+        ),
+      ]),
+    ]),
+
+    trigger('fadeInUp', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(40px)' }),
+        animate('700ms ease-out', style({ opacity: 1, transform: 'translateY(0)' })),
+      ]),
+    ]),
+  ],
 })
 export class DashboardComponent implements OnInit {
   selected: any;
-  onDateChange($event: Event) {
-    throw new Error('Method not implemented.');
-  }
   dashboardData: DashboardMetrics | null = null;
   loading = true;
   error: string | null = null;
@@ -68,8 +96,6 @@ export class DashboardComponent implements OnInit {
       right: ''
     }
   };
-  selectedDate: any;
-  dateClass: any;
 
   constructor(private http: HttpClient) { }
 
@@ -100,5 +126,4 @@ export class DashboardComponent implements OnInit {
       { title: 'Client Demo', date: '2025-05-28' }
     ];
   }
-  //  selected = model<Date | null>(null);
 }

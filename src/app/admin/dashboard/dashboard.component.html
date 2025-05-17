@@ -1,114 +1,60 @@
 <div class="container py-4">
     <!-- Loading and Error States -->
-    <div *ngIf="loading" class="text-center text-muted">Loading dashboard data...</div>
-    <div *ngIf="error" class="alert alert-danger text-center">{{ error }}</div>
+    <div *ngIf="loading" class="text-center text-muted animate_animated animatepulse animate_infinite">Loading dashboard
+        data...</div>
+    <div *ngIf="error" class="alert alert-danger text-center animate_animated animate_shakeX">{{ error }}</div>
 
     <!-- Dashboard Cards -->
-    <div *ngIf="!loading && dashboardData" class="row g-3 justify-content-between">
-        <!-- Total Project -->
-        <div class="col-md-2">
-            <div class="dashboard-card text-dark" style="background-color: #6f42c1;">
-                <div class="d-flex align-items-center gap-3 mb-3">
-                    <div class="icon"><i class="bi bi-diagram-3-fill"></i></div>
-                    <div>
-                        <h6>Total Project</h6>
-                        <h4>{{ dashboardData.totalProjects }}</h4>
-                    </div>
+    <div *ngIf="!loading && dashboardData" class="row g-4 justify-content-between">
+        <div class="col-md-2 neumorphic-card text-white" *ngFor="let card of [
+        { title: 'Total Projects', icon: 'bi-diagram-3-fill', value: dashboardData.totalProjects, bg: 'linear-gradient(135deg, #667eea, #764ba2)' },
+        { title: 'Total Tasks', icon: 'bi-list-task', value: dashboardData.totalTasks, bg: 'linear-gradient(135deg, #f7971e, #ffd200)' },
+        { title: 'Tasks To Do', icon: 'bi-hourglass-split', value: dashboardData.taskSummary.toDo, bg: 'linear-gradient(135deg, #f953c6, #b91d73)' },
+        { title: 'Tasks In Progress', icon: 'bi-arrow-repeat', value: dashboardData.taskSummary.inProgress, bg: 'linear-gradient(135deg, #4facfe, #00f2fe)' },
+        { title: 'Tasks Completed', icon: 'bi-check-circle-fill', value: dashboardData.taskSummary.completed, bg: 'linear-gradient(135deg, #43e97b, #38f9d7)' }
+      ]" [style.background]="card.bg" @bounceIn>
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="icon fs-3"><i class="bi" [ngClass]="card.icon"></i></div>
+                <div>
+                    <h6>{{ card.title }}</h6>
+                    <h3>{{ card.value }}</h3>
                 </div>
-                <div class="progress" style="height: 6px;">
-                    <div class="progress-bar bg-dark" style="width: 85%;"></div>
-                </div>
-                <small class="d-block mt-2">Last updated today</small>
             </div>
-        </div>
-
-        <!-- Total Task -->
-        <div class="col-md-2">
-            <div class="dashboard-card text-dark" style="background-color: #007bff;">
-                <div class="d-flex align-items-center gap-3 mb-3">
-                    <div class="icon"><i class="bi bi-list-task"></i></div>
-                    <div>
-                        <h6>Total Task</h6>
-                        <h4>{{ dashboardData.totalTasks }}</h4>
-                    </div>
-                </div>
-                <div class="progress" style="height: 6px;">
-                    <div class="progress-bar bg-dark" style="width: 70%;"></div>
-                </div>
-                <small class="d-block mt-2">Last updated today</small>
+            <div class="progress neumorphic-progress" style="height: 8px;">
+                <div class="progress-bar" [style.width.%]="
+            card.title === 'Tasks To Do' ? (dashboardData.taskSummary.toDo / dashboardData.totalTasks) * 100 :
+            card.title === 'Tasks In Progress' ? (dashboardData.taskSummary.inProgress / dashboardData.totalTasks) * 100 :
+            card.title === 'Tasks Completed' ? (dashboardData.taskSummary.completed / dashboardData.totalTasks) * 100 :
+            85
+          "></div>
             </div>
-        </div>
-
-        <!-- Tasks To Do -->
-        <div class="col-md-2">
-            <div class="dashboard-card text-dark" style="background-color: #ffc107;">
-                <div class="d-flex align-items-center gap-3 mb-3">
-                    <div class="icon text-dark"><i class="bi bi-hourglass-split"></i></div>
-                    <div>
-                        <h6>Tasks To Do</h6>
-                        <h4>{{ dashboardData.taskSummary.toDo }}</h4>
-                    </div>
-                </div>
-                <div class="progress" style="height: 6px;">
-                    <div class="progress-bar bg-dark"
-                        [style.width.%]="(dashboardData.taskSummary.toDo / dashboardData.totalTasks) * 100"></div>
-                </div>
-                <small class="d-block mt-2">
-                    {{ (dashboardData.taskSummary.toDo / dashboardData.totalTasks) * 100 | number: '1.0-0' }}% Remaining
-                </small>
-            </div>
-        </div>
-
-        <!-- Tasks In Progress -->
-        <div class="col-md-3">
-            <div class="dashboard-card text-dark" style="background-color: #17a2b8;">
-                <div class="d-flex align-items-center gap-3 mb-3">
-                    <div class="icon"><i class="bi bi-arrow-repeat"></i></div>
-                    <div>
-                        <h6>Tasks In Progress</h6>
-                        <h4>{{ dashboardData.taskSummary.inProgress }}</h4>
-                    </div>
-                </div>
-                <div class="progress" style="height: 6px;">
-                    <div class="progress-bar bg-dark"
-                        [style.width.%]="(dashboardData.taskSummary.inProgress / dashboardData.totalTasks) * 100"></div>
-                </div>
-                <small class="d-block mt-2">
-                    {{ (dashboardData.taskSummary.inProgress / dashboardData.totalTasks) * 100 | number: '1.0-0' }}%
-                    Active
-                </small>
-            </div>
-        </div>
-
-        <!-- Tasks Completed -->
-        <div class="col-md-3">
-            <div class="dashboard-card text-dark" style="background-color: #218838;">
-                <div class="d-flex align-items-center gap-3 mb-3">
-                    <div class="icon"><i class="bi bi-check-circle-fill"></i></div>
-                    <div>
-                        <h6>Tasks Completed</h6>
-                        <h4>{{ dashboardData.taskSummary.completed }}</h4>
-                    </div>
-                </div>
-                <div class="progress" style="height: 6px;">
-                    <div class="progress-bar bg-dark"
-                        [style.width.%]="(dashboardData.taskSummary.completed / dashboardData.totalTasks) * 100"></div>
-                </div>
-                <small class="d-block mt-2">
-                    {{ (dashboardData.taskSummary.completed / dashboardData.totalTasks) * 100 | number: '1.0-0' }}% Done
-                </small>
-            </div>
+            <small class="d-block mt-2 font-weight-bold text-shadow">
+                {{
+                card.title === 'Tasks To Do' ? (dashboardData.taskSummary.toDo / dashboardData.totalTasks) * 100 + '%
+                Remaining' :
+                card.title === 'Tasks In Progress' ? (dashboardData.taskSummary.inProgress / dashboardData.totalTasks) *
+                100 + '% Active' :
+                card.title === 'Tasks Completed' ? (dashboardData.taskSummary.completed / dashboardData.totalTasks) *
+                100 + '% Done' :
+                'Last updated today'
+                }}
+            </small>
         </div>
     </div>
 
-    <!-- Calendar Section -->
-    <div class="row mt-4">
-        <div class="col-12">
-            <mat-card class="demo-inline-calendar-card">
-                <mat-calendar [(selected)]="selected"></mat-calendar>
-            </mat-card>
-            <!-- <p>Selected date: {{selected()}}</p> -->
+    <!-- Pie Chart and Calendar Section -->
+    <div class="row mt-5 justify-content-center align-items-start" *ngIf="dashboardData" @fadeInUp>
+        <div class="col-lg-6 neumorphic-card p-4 d-flex justify-content-center align-items-center"
+            style="height: 420px;">
+            <app-charts [toDo]="dashboardData.taskSummary.toDo" [inProgress]="dashboardData.taskSummary.inProgress"
+                [completed]="dashboardData.taskSummary.completed" [totalTask]="dashboardData.totalTasks"
+                style="width: 100%; height: 100%;"></app-charts>
+        </div>
 
+        <div class="col-lg-5 neumorphic-card p-3 d-flex justify-content-center align-items-center"
+            style="height: 400px;">
+            <mat-calendar [(selected)]="selected" class="custom-calendar"></mat-calendar>
         </div>
     </div>
+
 </div>

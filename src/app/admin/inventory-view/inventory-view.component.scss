@@ -94,3 +94,75 @@ th[scope="row"] {
     font-weight: 500;
     color: #555;
 }
+
+.custom-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-btn.success {
+    background-color: #28a745;
+    /* Bootstrap's success green */
+}
+
+.custom-btn.success:hover {
+    background-color: #218838;
+}
+
+.custom-btn.danger {
+    background-color: #dc3545;
+    /* Bootstrap's danger red */
+}
+
+.custom-btn.danger:hover {
+    background-color: #c82333;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    /* Space between buttons */
+    align-items: center;
+    /* Align vertically */
+}
+
+.custom-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    min-width: 70px;
+    /* Optional: make buttons consistent width */
+    text-align: center;
+}
+
+.custom-btn.success {
+    background-color: #28a745;
+}
+
+.custom-btn.success:hover {
+    background-color: #218838;
+}
+
+.custom-btn.danger {
+    background-color: #dc3545;
+}
+
+.custom-btn.danger:hover {
+    background-color: #c82333;
+}
+
+.custom-btn.small {
+    font-size: 12px;
+    padding: 4px 10px;
+}

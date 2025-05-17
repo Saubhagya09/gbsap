@@ -69,7 +69,7 @@ export class TaskViewComponent {
     // console.log(task._id);
 
 
-    this.router.navigate(["/admin/task/edit"], { queryParams: { projectId: task._id } })
+    this.router.navigate(["/admin/task/edit"], { queryParams: { taskId: task._id } })
 
   }
   delete(task: any) {

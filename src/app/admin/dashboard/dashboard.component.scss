@@ -52,3 +52,92 @@
 .demo-inline-calendar-card {
     width: 300px;
 }
+
+/* Import Animate.css animations in your global styles or index.html
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+*/
+
+.container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.neumorphic-card {
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow:
+    8px 8px 16px #bebebe,
+    -8px -8px 16px #ffffff;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow:
+      12px 12px 24px #b0b0b0,
+      -12px -12px 24px #ffffff;
+    filter: brightness(1.1);
+  }
+}
+
+.icon i {
+  transition: transform 0.3s ease;
+}
+
+.neumorphic-card:hover .icon i {
+  transform: scale(1.3) rotate(15deg);
+}
+
+.progress.neumorphic-progress {
+  background: #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.progress-bar {
+  height: 8px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  transition: width 1s ease-in-out;
+  box-shadow: 0 3px 6px rgba(102, 126, 234, 0.7);
+  border-radius: 12px;
+}
+
+.text-shadow {
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+  font-weight: 600;
+}
+
+/* For calendar & chart neumorphic containers */
+.custom-calendar {
+  width: 100%;
+  height: 100%;
+  max-width: 360px;
+  max-height: 380px;
+}
+
+.neumorphic-card mat-calendar {
+  border-radius: 20px;
+  box-shadow:
+    inset 8px 8px 15px #c7c7c7,
+    inset -8px -8px 15px #ffffff;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .row.mt-5 {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .neumorphic-card {
+    width: 90% !important;
+    height: auto !important;
+  }
+
+  .custom-calendar {
+    max-width: 100%;
+  }
+}

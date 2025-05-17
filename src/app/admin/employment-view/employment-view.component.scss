@@ -1,0 +1,41 @@
+/* Base button styling */
+.custom-btn {
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    color: white;
+}
+
+/* Success button (green) */
+.custom-btn.success {
+    background-color: #28a745;
+}
+
+.custom-btn.success:hover {
+    background-color: #218838;
+}
+
+/* Danger button (red) */
+.custom-btn.danger {
+    background-color: #dc3545;
+}
+
+.custom-btn.danger:hover {
+    background-color: #c82333;
+}
+
+/* Small variant */
+.custom-btn.small {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+.spinner {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}

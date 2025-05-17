@@ -1,0 +1,46 @@
+.container {
+    max-width: 600px;
+    background-color: #ffffff;
+    padding: 30px;
+    margin-top: 50px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #007bff;
+    font-weight: 600;
+}
+
+.form-label {
+    font-weight: 500;
+    color: #333;
+}
+
+input.form-control {
+    border-radius: 8px;
+    padding: 10px;
+}
+
+button.btn-primary {
+    padding: 10px 0;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 8px;
+}
+
+button.btn-primary:disabled {
+    background-color: #b0c4de;
+    border-color: #b0c4de;
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 20px;
+        margin-top: 30px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}

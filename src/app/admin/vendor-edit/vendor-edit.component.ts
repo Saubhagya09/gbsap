@@ -46,6 +46,16 @@ export class VendorEditComponent {
 
         this.vendorForm.patchValue({
 
+
+          businessType: data.businessType,
+          vendorName: data.vendorName,
+          vendorTradeName: data.vendorTradeName,
+          vendorLocation: data.vendorLocation,
+          gstNumber: data.gstNumber,
+          contactNumber: data.contactNumber,
+          pinCode: data.pinCode
+
+
         });
         // this.loading = false;
       },
@@ -59,7 +69,23 @@ export class VendorEditComponent {
     });
   }
   onSubmit() {
+    if (!this.vendorId || this.vendorForm.invalid) return;
 
+    const updateUrl = `https://backend-sm8m.onrender.com/vendor/${this.vendorId}`;
+    this.service.put(updateUrl, this.vendorForm.value).subscribe({
+      next: (res) => {
+        console.log(res);
+
+        alert('Task updated successfully!');
+        this.router.navigate(['/admin/vendor/view'], {
+          queryParams: { id: res._id }
+        });
+      },
+      error: (err) => {
+        this.error = 'Failed to update task.';
+        console.error(err);
+      }
+    });
   }
 }
 

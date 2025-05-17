@@ -1,65 +1,91 @@
-<div class="container">
-  <h2>Add New Inventory</h2>
+<div class="container mt-5">
+  <div class="shadow-lg rounded-4 p-4 mx-auto" style="max-width: 600px;">
+    <div class="card-header mb-4 text-white">
+      <h4 class="text-center text-primary simple-heading">Add New Inventory</h4>
+    </div>
+    
+    <!-- <div class="card-body"> -->
+      <form (ngSubmit)="addNewInventory(inventoryForm.value)" #inventoryForm="ngForm">
+        <div class="m-3">
+          
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="itemNo">Item No</label>
+              <input type="number" class="form-control" id="itemNo" name="itemNo" ngModel required>
+            </div>
+          </div>
 
-  <form (ngSubmit)="addNewInventory(inventoryForm.value)" #inventoryForm="ngForm">
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="materialName">Material Name</label>
+              <input type="text" class="form-control" id="materialName" name="materialName" ngModel required>
+            </div>
+          </div>
 
-    <!-- Item No -->
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Item No</mat-label>
-      <input matInput type="number" id="itemNo" name="itemNo" ngModel required>
-    </mat-form-field>
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea class="form-control" id="description" name="description" ngModel rows="3"></textarea>
+            </div>
+          </div>
 
-    <!-- Material Name -->
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Material Name</mat-label>
-      <input matInput type="text" id="materialName" name="materialName" ngModel required>
-    </mat-form-field>
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="unit">Unit</label>
+              <input type="text" class="form-control" id="unit" name="unit" ngModel required>
+            </div>
+          </div>
 
-    <!-- Description -->
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Description</mat-label>
-      <textarea matInput id="description" name="description" ngModel rows="3"></textarea>
-    </mat-form-field>
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="quantity">Quantity</label>
+              <input type="number" class="form-control" id="quantity" name="quantity" ngModel required>
+            </div>
+          </div>
 
-    <!-- Unit -->
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Unit</mat-label>
-      <input matInput type="text" id="unit" name="unit" ngModel required>
-    </mat-form-field>
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="unitPrice">Unit Price</label>
+              <input type="number" class="form-control" id="unitPrice" name="unitPrice" ngModel required>
+            </div>
+          </div>
 
-    <!-- Quantity -->
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Quantity</mat-label>
-      <input matInput type="number" id="quantity" name="quantity" ngModel required>
-    </mat-form-field>
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="supplier">Supplier</label>
+              <input type="text" class="form-control" id="supplier" name="supplier" ngModel>
+            </div>
+          </div>
 
-    <!-- Unit Price -->
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Unit Price</mat-label>
-      <input matInput type="number" id="unitPrice" name="unitPrice" ngModel required>
-    </mat-form-field>
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="location">Location</label>
+              <input type="text" class="form-control" id="location" name="location" ngModel>
+            </div>
+          </div>
 
-    <!-- Supplier -->
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Supplier</mat-label>
-      <input matInput type="text" id="supplier" name="supplier" ngModel>
-    </mat-form-field>
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="notes">Notes</label>
+              <textarea class="form-control" id="notes" name="notes" ngModel rows="2"></textarea>
+            </div>
+          </div>
 
-    <!-- Supplier -->
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Location</mat-label>
-      <input matInput type="text" id="Location" name="Location" ngModel>
-    </mat-form-field>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg" [disabled]="inventoryForm.invalid">
+              Add Inventory
+            </button>
+          </div>
 
-    <!-- Notes -->
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Notes</mat-label>
-      <textarea matInput id="notes" name="notes" ngModel rows="2"></textarea>
-    </mat-form-field>
+        </div>
+      </form>
+    </div>
+  </div>
+<!-- </div> -->
 
-    <!-- Submit Button -->
-    <button mat-raised-button color="primary" type="submit" [disabled]="inventoryForm.invalid">
-      Add Inventory
-    </button>
-  </form>
-</div>
+<ng-template #loadingTpl>
+  <div class="d-flex justify-content-center align-items-center mt-5">
+    <div class="spinner-border text-primary me-2" role="status"></div>
+    <span>Loading Inventory...</span>
+  </div>
+</ng-template>

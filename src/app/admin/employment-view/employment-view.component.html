@@ -1,0 +1,46 @@
+<div class="container">
+    <h2>Employee Details</h2>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="spinner">
+        <mat-spinner diameter="50"></mat-spinner>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+        <p>{{ errorMessage }}</p>
+    </div>
+
+    <!-- User Table -->
+    <table class="table table-bordered" *ngIf="!loading && !errorMessage">
+        <thead>
+            <tr>
+                <th scope="col">SL.</th>
+                <th scope="col">Name</th>
+                <th scope="col">Contact Number</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+                <th scope="col">Department</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users; let i = index">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ user.name }}</td>
+                <td>{{ user.contactNumber }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td>{{ user.department }}</td>
+                <td>
+                    <div class="button-group">
+                        <button class="custom-btn success small" (click)="editUser(user)">Edit</button>
+                        <button class="custom-btn danger small" (click)="deleteUser(user._id, i)">Delete</button>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

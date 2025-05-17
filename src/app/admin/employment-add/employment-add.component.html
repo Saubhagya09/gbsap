@@ -1,0 +1,41 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Add New Employee</h2>
+
+    <form (ngSubmit)="addNewEmployee(employeeForm.value)" #employeeForm="ngForm">
+
+        <!-- Name -->
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" id="name" name="name" class="form-control" ngModel required />
+        </div>
+
+        <!-- Contact Number -->
+        <div class="mb-3">
+            <label for="contactNumber" class="form-label">Contact Number</label>
+            <input type="tel" id="contactNumber" name="contactNumber" class="form-control" ngModel required />
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" name="email" class="form-control" ngModel required />
+        </div>
+
+        <!-- Role -->
+        <div class="mb-3">
+            <label for="role" class="form-label">Role</label>
+            <input type="text" id="role" name="role" class="form-control" ngModel required />
+        </div>
+
+        <!-- Department -->
+        <div class="mb-3">
+            <label for="department" class="form-label">Department</label>
+            <input type="text" id="department" name="department" class="form-control" ngModel required />
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary w-100" [disabled]="employeeForm.invalid">
+            Add Employee
+        </button>
+    </form>
+</div>

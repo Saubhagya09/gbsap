@@ -28,6 +28,7 @@ export class InventoryEditComponent {
       quantity: ['', Validators.required],
       unitPrice: ['', Validators.required],
       supplier: [''],
+      location: ['', Validators.required],
       notes: ['']
     });
   }

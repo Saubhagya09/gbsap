@@ -28,6 +28,8 @@ export class InventoryAddComponent {
   addNewInventory(formData: any): void {
     const apiUrl = 'https://backend-sm8m.onrender.com/inventory';
 
+    const totalCost = formData.quantity * formData.unitPrice;
+
     const payload = {
       itemNo: formData.itemNo,
       materialName: formData.materialName,
@@ -35,8 +37,9 @@ export class InventoryAddComponent {
       unit: formData.unit,
       quantity: formData.quantity,
       unitPrice: formData.unitPrice,
+      totalCost: totalCost,
       supplier: formData.supplier,
-
+      location: formData.location,
       notes: formData.notes
     };
 
@@ -44,7 +47,7 @@ export class InventoryAddComponent {
       next: (response) => {
         console.log('✅ Inventory added:', response);
         alert('✅ Inventory item added successfully!');
-        this.router.navigate(['/inventory-list']); // change path as needed
+        this.router.navigate(['/inventory-list']);
       },
       error: (error) => {
         console.error('❌ Error adding inventory:', error);
@@ -52,4 +55,5 @@ export class InventoryAddComponent {
       }
     });
   }
+
 }

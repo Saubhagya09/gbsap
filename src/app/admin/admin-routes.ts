@@ -93,7 +93,31 @@ const routes: Routes = [
                 path: 'purchase/bill',
                 loadComponent: () => import('./purches-bill/purches-bill.component').then(m => m.PurchesBillComponent)
             },
+            {
+                path: 'sell/bill',
+                loadComponent: () => import('./sell-bill/sell-bill.component').then(m => m.SellBillComponent)
+            },
+            {
+                path: 'sell/book',
+                loadComponent: () => import('./sell-book/sell-book.component').then(m => m.SellBookComponent)
+            },
+            {
+                path: 'employment/view',
+                loadComponent: () => import('./employment-view/employment-view.component').then(m => m.EmploymentViewComponent)
+            },
 
+            {
+                path: 'employment/edit',
+                loadComponent: () => import('./employment-edit/employment-edit.component').then(m => m.EmploymentEditComponent)
+            },
+            {
+                path: 'employment/add',
+                loadComponent: () => import('./employment-add/employment-add.component').then(m => m.EmploymentAddComponent)
+            },
+            {
+                path: 'charts',
+                loadComponent: () => import('./charts/charts.component').then(m => m.ChartComponent)
+            },
 
         ]
     }

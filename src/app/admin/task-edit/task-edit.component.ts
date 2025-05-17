@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './task-edit.component.scss'
 })
 export class TaskEditComponent {
+  taskId: string | null = null;
   projectId: string | null = null;
   taskForm!: FormGroup;
   loading = true;
@@ -17,10 +18,10 @@ export class TaskEditComponent {
   constructor(private router: Router, private route: ActivatedRoute, private fb: FormBuilder, private service: ServiceService) { }
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(params => {
-      this.projectId = params.get("projectId")
-      console.log("progressId", this.projectId)
-      if (this.projectId) {
-        this.fetchTaskById(this.projectId);
+      this.taskId = params.get("taskId")
+      console.log("progressId", this.taskId)
+      if (this.taskId) {
+        this.fetchTaskById(this.taskId);
       } else {
         this.error = "No task ID provided.";
       }
@@ -49,7 +50,7 @@ export class TaskEditComponent {
     this.service.get(url).subscribe({
       next: (data: any) => {
         console.log(data);
-
+        this.projectId = data.projectId
         this.taskForm.patchValue({
           taskName: data.taskName,
           status: data.status,
@@ -69,14 +70,16 @@ export class TaskEditComponent {
   }
 
   onSubmit() {
-    if (!this.projectId || this.taskForm.invalid) return;
+    if (!this.taskId || this.taskForm.invalid) return;
 
-    const updateUrl = `https://backend-sm8m.onrender.com/tasks/${this.projectId}`;
+    const updateUrl = `https://backend-sm8m.onrender.com/tasks/${this.taskId}`;
     this.service.put(updateUrl, this.taskForm.value).subscribe({
       next: (res) => {
+        console.log(res.projectId);
+
         alert('Task updated successfully!');
         this.router.navigate(['/admin/task/view'], {
-          queryParams: { id: res.projectId }
+          queryParams: { id: this.projectId }
         });
       },
       error: (err) => {

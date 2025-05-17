@@ -45,8 +45,11 @@
         <td>{{ task.location }}</td>
         <td>{{ task.notes }}</td>
         <td>
-          <button class="btn btn-success btn-sm" (click)="editInventory(task)">Edit</button>
-          <button class="btn btn-danger btn-sm" (click)="deleteInventory(task._id, i)">Delete</button>
+          <div class="button-group">
+            <button class="custom-btn success small" (click)="editInventory(task)">Edit</button>
+            <button class="custom-btn danger small" (click)="deleteInventory(task._id, i)">Delete</button>
+          </div>
+
 
 
         </td>

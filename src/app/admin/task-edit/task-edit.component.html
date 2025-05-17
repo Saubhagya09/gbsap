@@ -1,40 +1,78 @@
-<div class="container mt-4" *ngIf="!loading; else loadingTpl">
-    <h3>Edit Task</h3>
-    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-        <div class="mb-3">
-            <label>Task Name</label>
-            <input type="text" class="form-control" formControlName="taskName" />
+<div class="container mt-5">
+    <div class=" shadow-lg rounded-4 p-4 mx-auto" style="max-width: 600px;">
+        <div class="card-header mb-4 text-white">
+            <h4 class="text-center text-primary simple-heading">Edit Task</h4>
         </div>
-        <div class="mb-3">
-            <label>Status</label>
-            <select class="form-control" formControlName="status">
-                <option>To Do</option>
-                <option>In Progress</option>
-                <option>Completed</option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <label>Start Date</label>
-            <input type="date" class="form-control" formControlName="startDate" />
-        </div>
-        <div class="mb-3">
-            <label>Due Date</label>
-            <input type="date" class="form-control" formControlName="dueDate" />
-        </div>
-        <div class="mb-3">
-            <label>Task Type</label>
-            <input type="text" class="form-control" formControlName="taskType" />
-        </div>
-        <div class="mb-3">
-            <label>Assigned To</label>
-            <input type="text" class="form-control" formControlName="assignedTo" />
-        </div>
-        <button class="btn btn-primary" type="submit">Update Task</button>
-    </form>
 
-    <div *ngIf="error" class="text-danger mt-3">{{ error }}</div>
+        <!-- <div class="card-body"> -->
+        <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+            <div class="m-3">
+
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label for="taskName" class="form-label">Task Name</label>
+                        <input type="text" id="taskName" class="form-control" formControlName="taskName" />
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label for="status" class="form-label">Status</label>
+                        <select id="status" class="form-control" formControlName="status">
+                            <option>To Do</option>
+                            <option>In Progress</option>
+                            <option>Completed</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label for="startDate" class="form-label">Start Date</label>
+                        <input type="date" id="startDate" class="form-control" formControlName="startDate" />
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label for="dueDate" class="form-label">Due Date</label>
+                        <input type="date" id="dueDate" class="form-control" formControlName="dueDate" />
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label for="taskType" class="form-label">Task Type</label>
+                        <input type="text" id="taskType" class="form-control" formControlName="taskType" />
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="form-group">
+                        <label for="assignedTo" class="form-label">Assigned To</label>
+                        <input type="text" id="assignedTo" class="form-control" formControlName="assignedTo" />
+                    </div>
+                </div>
+
+                <div class="d-grid">
+                    <button class="btn btn-primary btn-lg" type="submit" [disabled]="taskForm.invalid">
+                        Update Task
+                    </button>
+                </div>
+
+            </div>
+        </form>
+
+        <div *ngIf="error" class="text-danger mt-3">
+            {{ error }}
+        </div>
+    </div>
 </div>
+<!-- </div> -->
 
 <ng-template #loadingTpl>
-    <p>Loading task data...</p>
+    <div class="d-flex justify-content-center align-items-center mt-5">
+        <div class="spinner-border text-primary me-2" role="status"></div>
+        <span>Loading task data...</span>
+    </div>
 </ng-template>

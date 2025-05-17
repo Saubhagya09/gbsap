@@ -84,6 +84,7 @@ export class ProjectViewComponent {
 
   // View tasks associated with a project
   task_view(id: any) {
+    console.log(id);
 
     const url = `https://backend-sm8m.onrender.com/tasks/project/${id}`;
     this.service.get(url).subscribe({
