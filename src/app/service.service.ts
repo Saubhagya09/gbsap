@@ -25,6 +25,10 @@ export class ServiceService {
     return this.http.put(url, data);
   }
 
+  downloadPDF(url: string) {
+    return this.http.get(url, { responseType: 'blob' });  // Get response as Blob
+  }
+
   // private currentProjectIdSubject = new BehaviorSubject<number | null>(null);
   // currentProjectId$ = this.currentProjectIdSubject.asObservable();
 
@@ -45,5 +49,6 @@ export class ServiceService {
   getSelectedTask() {
     return this.selectedTaskSubject.getValue(); // For sync access
   }
+
 }
 

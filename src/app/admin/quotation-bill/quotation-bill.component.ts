@@ -1,48 +1,51 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,FormGroup,FormArray,ReactiveFormsModule,Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ServiceService } from '../../service.service';
+import { CommonModule } from '@angular/common';
+// import { ServiceService } from 'src/app/service.service';
+
 @Component({
-  selector: 'app-purches-bill',
-  standalone: true,
-  imports: [ReactiveFormsModule,CommonModule,],
-  templateUrl: './purches-bill.component.html',
-  styleUrl: './purches-bill.component.scss'
+  selector: 'app-quotation-bill',
+  imports: [ReactiveFormsModule, CommonModule],
+  templateUrl: './quotation-bill.component.html',
+  styleUrls: ['./quotation-bill.component.scss'],
 })
-export class PurchesBillComponent implements OnInit{
-    PurchaseForm!: FormGroup;
+export class QuotationBillComponent implements OnInit {
+  quotationForm!: FormGroup;
   totalAmount: any;
   gstRates: number[] = [0, 2.5, 6, 9, 14];
   constructor(private fb: FormBuilder, private service: ServiceService) { }
 
   ngOnInit(): void {
-  this.PurchaseForm = this.fb.group({
-  invoiceNumber: ['', Validators.required],
-  invoiceDate: [new Date().toISOString().substring(0, 10), Validators.required],
-  supplierName: ['', Validators.required], // ← Add this
-  supplierGST: ['', Validators.required],   // ← Add this
-  billTo: this.fb.group({
-    name: ['', Validators.required],
-    address: ['', Validators.required],
-  }),
-  shipTo: this.fb.group({
-    name: ['', Validators.required],
-    address: ['', Validators.required],
-  }),
-  items: this.fb.array([this.createItem()]),
-  cgstPercent: ['', [Validators.required, Validators.min(0)]],
-  sgstPercent: ['', [Validators.required, Validators.min(0)]],
-  paymentMode: [''],
-  bankName: [''],
-  accountNumber: [''],
-  ifscCode: [''],
-});
-
+    this.quotationForm = this.fb.group({
+      // quotationNumber: [''],
+      quotationDate: [new Date().toISOString().substring(0, 10), Validators.required],
+        // quotationValue: [''],
+        // customerName: ['', ],
+        // customerGST	:['',],
+      // vendorName: ['', Validators.required],
+      // vendorGST: ['', Validators.required],
+      billTo: this.fb.group({
+        name: ['', Validators.required],
+        address: ['', Validators.required],
+      }),
+      shipTo: this.fb.group({
+        name: ['', Validators.required],
+        address: ['', Validators.required],
+      }),
+      items: this.fb.array([this.createItem()]),
+      cgstPercent: ['', [Validators.required, Validators.min(0)]],
+      sgstPercent: ['', [Validators.required, Validators.min(0)]],
+      modeOfPayment: [''],
+      bankName: [''],
+      accountNumber: [''],
+      ifscCode: [''],
+    });
   }
 
   // Getter for items FormArray
   get items(): FormArray {
-    return this.PurchaseForm.get('items') as FormArray;
+    return this.quotationForm.get('items') as FormArray;
   }
 
   createItem(): FormGroup {
@@ -64,18 +67,18 @@ export class PurchesBillComponent implements OnInit{
     this.items.removeAt(index);
   }
 
-  submitBill() {
-    if (this.PurchaseForm.invalid) {
-      this.PurchaseForm.markAllAsTouched();
+  submitQuotation() {
+    if (this.quotationForm.invalid) {
+      this.quotationForm.markAllAsTouched();
       return;
     }
 
     // Prepare data for backend
-    const payload = this.PurchaseForm.value;
+    const payload = this.quotationForm.value;
     // Ensure items[].total = 0 (backend recalculates)
     payload.items = payload.items.map((item: any) => ({ ...item, total: 0 }));
 
-    this.service.post('https://backend-sm8m.onrender.com/purchase', payload).subscribe({
+    this.service.post('https://backend-sm8m.onrender.com/quation', payload).subscribe({
       next: (res) => {
         console.log('Invoice saved successfully', res);
         console.log('Invoice saved successfully', res._id);
@@ -101,7 +104,7 @@ export class PurchesBillComponent implements OnInit{
   getInvoiceTotamount(id: any) {
     console.log(id);
 
-    const url = `https://backend-sm8m.onrender.com/purchase/${id}`;
+    const url = `https://backend-sm8m.onrender.com/quation/${id}`;
 
     this.service.get(url).subscribe({
       next: (invoice: any) => {

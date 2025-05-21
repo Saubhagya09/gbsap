@@ -1,1 +1,48 @@
-<p>sell-book works!</p>
+<div class="container my-4">
+    <h2 class="mb-4 text-center">Sale Invoices</h2>
+
+    <div *ngIf="loading" class="text-center">
+        <div class="spinner-border text-primary" role="status"></div>
+        <p class="mt-2">Loading data...</p>
+    </div>
+
+    <div *ngIf="error" class="alert alert-danger text-center">
+        {{ error }}
+    </div>
+
+    <div *ngIf="!loading && sellInvoices.length > 0" class="table-responsive">
+        <table class="table table-hover table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>SL</th>
+                    <th>Invoice Number</th>
+                    <th>Customer Name</th>
+                    <th>Amount</th>
+                    <th>Mode Of Payment</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let invoice of sellInvoices; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ invoice.invoiceNumber }}</td>
+                    <td>{{ invoice.shipTo.name }}</td>
+                    <td>{{ invoice.totalAmount }}</td>
+                    <td>{{ invoice.modeOfPayment }}</td>
+                    <td>
+                        <button class="btn btn-danger btn-sm " (click)="delete(invoice._id)">Delete</button>
+
+                        <button class="btn btn-success btn-sm " style="margin-left: 20px;"
+                            (click)="pdf_download(invoice._id)">PDF</button>
+
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div *ngIf="!loading && sellInvoices.length === 0" class="alert alert-info text-center">
+        No sell invoices found.
+    </div>
+</div>

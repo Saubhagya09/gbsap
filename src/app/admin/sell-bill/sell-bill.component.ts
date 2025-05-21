@@ -12,7 +12,8 @@ import { CommonModule } from '@angular/common';
 })
 export class SellBillComponent implements OnInit {
   sellForm!: FormGroup;
-
+  totalAmount: any;
+  gstRates: number[] = [0, 2.5, 6, 9, 14];
   constructor(private fb: FormBuilder, private service: ServiceService) { }
 
   ngOnInit(): void {
@@ -75,12 +76,12 @@ export class SellBillComponent implements OnInit {
 
     this.service.post('https://backend-sm8m.onrender.com/sell', payload).subscribe({
       next: (res) => {
-
-
-
-
         console.log('Invoice saved successfully', res);
-        console.log('Invoice saved successfully', res.items);
+        console.log('Invoice saved successfully', res._id);
+
+        this.getInvoiceTotamount(res._id)
+
+
         alert('Invoice submitted successfully!');
         // this.sellForm.reset({
         //   invoiceDate: new Date().toISOString().substring(0, 10),
@@ -96,7 +97,25 @@ export class SellBillComponent implements OnInit {
       },
     });
   }
+  getInvoiceTotamount(id: any) {
+    console.log(id);
+
+    const url = `https://backend-sm8m.onrender.com/sell/${id}`;
+
+    this.service.get(url).subscribe({
+      next: (invoice: any) => {
+        console.log('Fetched invoice:', invoice);
+        this.totalAmount = invoice.totalAmount
+        console.log(this.totalAmount);
 
 
+        // alert(Total invoice amount: ${totalAmount});
+      },
+      error: (err) => {
+        console.error('Failed to fetch invoice:', err);
+        alert('Could not fetch invoice details.');
+      }
+    });
+  }
 
 }

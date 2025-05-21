@@ -118,7 +118,19 @@ const routes: Routes = [
                 path: 'charts',
                 loadComponent: () => import('./charts/charts.component').then(m => m.ChartComponent)
             },
-
+             {
+                path: 'profile',
+                loadComponent: () => import('./profile/profile.component').then(m => m.ProfileComponent)
+            },
+             {
+                path: 'quotation/bill',
+                loadComponent: () => import('./quotation-bill/quotation-bill.component').then(m => m.QuotationBillComponent)
+            },
+            {
+                path: 'quotation/book',
+                loadComponent: () => import('./quotation-book/quotation-book.component').then(m => m.QuotationBookComponent)
+            },
+          
         ]
     }
 ];

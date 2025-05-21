@@ -1,1 +1,54 @@
-<p>purchase-book works!</p>
+<div class="container my-4">
+  <h2 class="mb-4 text-center">📋 Purchase Invoices</h2>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="loading" class="text-center">
+    <div class="spinner-border text-primary" role="status"></div>
+    <p class="mt-2">Loading data...</p>
+  </div>
+
+  <!-- Error Alert -->
+  <div *ngIf="error" class="alert alert-danger text-center">
+    {{ error }}
+  </div>
+
+  <!-- Table Display -->
+  <div *ngIf="!loading && purchaseInvoices.length > 0" class="table-responsive">
+    <table class="table table-hover table-striped table-bordered align-middle">
+      <thead class="table-success">
+        <tr>
+          <th>SL</th>
+          <th>Invoice No</th>
+          <th>Invoice Date</th>
+          <th>Supplier</th>
+          <th>Customer</th>
+          <th>Amount</th>
+          <th>Payment Mode</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let invoice of purchaseInvoices; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ invoice.invoiceNumber }}</td>
+          <td>{{ invoice.invoiceDate | date: 'yyyy-MM-dd' }}</td>
+          <td>{{ invoice.supplierName || 'N/A' }}</td>
+          <td>{{ invoice.shipTo?.name || 'N/A' }}</td>
+          <td>₹{{ invoice.totalAmount | number: '1.2-2' }}</td>
+          <td>{{ invoice.paymentMode || 'N/A' }}</td>
+          <td>
+            <div class="btn-group" role="group">
+              <button class="btn btn-danger btn-sm" (click)="delete(invoice._id)">Delete</button>
+              <button class="btn btn-success btn-sm" (click)="pdf_download(invoice._id)">PDF</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- No Data Alert -->
+  <div *ngIf="!loading && purchaseInvoices.length === 0" class="alert alert-info text-center">
+    No purchase invoices found.
+  </div>
+</div>

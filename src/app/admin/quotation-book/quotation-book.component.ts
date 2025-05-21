@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { ServiceService } from '../../service.service';
 import { CommonModule } from '@angular/common';
+import { ServiceService } from '../../service.service';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-purchase-book',
+  selector: 'app-quotation-book',
   imports: [CommonModule],
-  templateUrl: './purchase-book.component.html',
-  styleUrl: './purchase-book.component.scss'
+  templateUrl: './quotation-book.component.html',
+  styleUrl: './quotation-book.component.scss'
 })
-export class PurchaseBookComponent implements OnInit {
+export class QuotationBookComponent {
      purchaseInvoices: any[] = [];
   loading: boolean = true;
   error: string = '';
@@ -20,7 +20,7 @@ export class PurchaseBookComponent implements OnInit {
   }
 
   getSellInvoices(): void {
-    const url = 'https://backend-sm8m.onrender.com/purchase';
+    const url = 'https://backend-sm8m.onrender.com/quation';
     this.service.get(url).subscribe({
       next: (data: any) => {
         console.log(data);
@@ -38,7 +38,7 @@ export class PurchaseBookComponent implements OnInit {
   delete(id: any) {
     console.log(id);
     if (confirm('Are you sure you want to delete this invoice?')) {
-      const url = `https://backend-sm8m.onrender.com/purchase/${id}`;
+      const url = `https://backend-sm8m.onrender.com/quation/${id}`;
       this.service.delete(url).subscribe({
         next: () => {
           // Remove deleted invoice from list
@@ -58,7 +58,7 @@ export class PurchaseBookComponent implements OnInit {
   // }
 
   pdf_download(id: string) {
-    const url = `https://backend-sm8m.onrender.com/purchase/pdf/${id}`;
+    const url = `https://backend-sm8m.onrender.com/quation/pdf/${id}`;
 
     this.service.downloadPDF(url).subscribe({
       next: (blob) => {
@@ -88,5 +88,5 @@ export class PurchaseBookComponent implements OnInit {
       }
     });
   }
-
+ 
 }

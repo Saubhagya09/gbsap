@@ -1,0 +1,71 @@
+<div class="container my-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-success text-white text-center">
+      <h4 class="mb-0">📋 Purchase Invoices</h4>
+    </div>
+    <div class="card-body">
+
+      <!-- Loading Spinner -->
+      <div *ngIf="loading" class="text-center py-4">
+        <div class="spinner-border text-primary" role="status"></div>
+        <p class="mt-2">Loading data...</p>
+      </div>
+
+      <!-- Error Alert -->
+      <div *ngIf="error" class="alert alert-danger text-center">
+        {{ error }}
+      </div>
+
+      <!-- Table Display -->
+      <div *ngIf="!loading && purchaseInvoices.length > 0" class="table-responsive">
+        <table class="table table-bordered table-hover align-middle text-center">
+          <thead class="table-light">
+            <tr class="bg-success text-white">
+              <th scope="col">SL</th>
+              <th scope="col">Invoice No</th>
+              <th scope="col">Invoice Date</th>
+              <th scope="col">Supplier</th>
+              <th scope="col">GST</th>
+              <th scope="col">customerName</th>
+              <th scope="col">Amount (₹)</th>
+              <!-- <th scope="col">Payment Mode</th> -->
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let invoice of purchaseInvoices; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ invoice.quotationNumber }}</td>
+              <td>{{ invoice.quotationDate | date: 'yyyy-MM-dd' }}</td>
+              <td>{{ invoice.customerName || 'N/A' }}</td>
+               <td>{{ invoice.customerGST || 'N/A' }}</td>
+              <td>{{ invoice.shipTo?.name || 'N/A' }}</td>
+              <td>₹{{ invoice.totalAmount | number: '1.2-2' }}</td>
+              <!-- <td>{{ invoice.modeOfPayment || 'N/A' }}</td> -->
+              <td>
+                <div class="btn-group" role="group">
+                  <button class="btn btn-outline-danger btn-sm" (click)="delete(invoice._id)">
+                    🗑 Delete
+                  </button>
+                  <button class="btn btn-outline-primary btn-sm" (click)="pdf_download(invoice._id)">
+                    📄 PDF
+                  </button>
+                   <!-- <button class="btn btn-outline-primary btn-sm" (click)="edit(invoice._id)">
+                    Edit
+                  </button> -->
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- No Data Alert -->
+      <div *ngIf="!loading && purchaseInvoices.length === 0" class="alert alert-info text-center mt-4">
+        No purchase invoices found.
+      </div>
+    </div>
+  </div>
+</div>
+
+

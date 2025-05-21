@@ -111,7 +111,7 @@ const navitems: NavItem[] = [
   {
     parent: true,
     displayName: 'Purchase',
-    iconName: 'dns',
+    iconName: 'payment',
     show: 'N/A',
     type: true,
     children: [
@@ -135,14 +135,14 @@ const navitems: NavItem[] = [
   },
   {
     parent: true,
-    displayName: 'Sell',
-    iconName: 'dns',
+    displayName: 'Sale',
+    iconName: 'sell',
     show: 'N/A',
     type: true,
     children: [
       {
         parent: false,
-        displayName: 'Sell Bill',
+        displayName: 'Sale Bill',
         iconName: 'add_circle',
         route: 'sell/bill',
         show: 'N/A',
@@ -150,7 +150,7 @@ const navitems: NavItem[] = [
       },
       {
         parent: false,
-        displayName: 'Sell Book',
+        displayName: 'Sale Book',
         iconName: 'visibility',
         route: 'sell/book',
         show: 'N/A',
@@ -178,6 +178,31 @@ const navitems: NavItem[] = [
         displayName: 'Add',
         iconName: 'add_circle',
         route: 'employment/add',
+        show: 'N/A',
+        type: true
+      }
+    ]
+  },
+    {
+    parent: true,
+    displayName: 'Quotation',
+    iconName: 'donut_small',
+    show: 'N/A',
+    type: true,
+    children: [
+      {
+        parent: false,
+        displayName: 'Quotation Bill',
+        iconName: 'visibility',
+        route: 'quotation/bill',
+        show: 'N/A',
+        type: true
+      },
+      {
+        parent: false,
+        displayName: 'Quotation Book',
+        iconName: 'add_circle',
+        route: 'quotation/book',
         show: 'N/A',
         type: true
       }
